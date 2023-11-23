@@ -1,18 +1,28 @@
+@file:Suppress("UnstableApiUsage")
+
+rootProject.name = "gallery"
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
+
 pluginManagement {
     repositories {
         google()
         mavenCentral()
         gradlePluginPortal()
     }
+    includeBuild("build-logic")
 }
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
+
+buildCache {
+    local {
+        removeUnusedEntriesAfterDays = 7
     }
 }
 
-rootProject.name = "GalleryApp"
-include(":app")
- 
+include(
+    ":app",
+    ":data",
+    ":domain",
+    ":presentation",
+)
