@@ -1,4 +1,4 @@
-package com.daangn.leejihun.gallery.presentation.ui
+package com.daangn.leejihun.gallery.presentation.ui.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -15,6 +15,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
 import com.daangn.leejihun.gallery.domain.entity.PhotoEntity
+import com.daangn.leejihun.gallery.presentation.ui.component.PhotoCard
 
 @Composable
 fun GalleryScreen(

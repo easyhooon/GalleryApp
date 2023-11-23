@@ -8,6 +8,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.daangn.leejihun.gallery.presentation.GalleryViewModel
+import com.daangn.leejihun.gallery.presentation.ui.screen.GalleryScreen
 
 @Composable
 fun GalleryApp(

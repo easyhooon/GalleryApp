@@ -1,4 +1,4 @@
-package com.daangn.leejihun.gallery.presentation.ui
+package com.daangn.leejihun.gallery.presentation.ui.component
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
