@@ -4,6 +4,7 @@ plugins {
     daangn("android-library")
     daangn("android-compose")
     daangn("android-hilt")
+    id("kotlin-parcelize")
 }
 
 android {
