@@ -8,5 +8,4 @@ dependencies {
         libs.androidx.paging.common,
         libs.javax.inject
     )
-    compileOnly(libs.compose.stable.marker)
 }
