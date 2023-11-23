@@ -1,5 +1,6 @@
 package com.daangn.leejihun.gallery.presentation.ui.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -12,12 +13,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.daangn.leejihun.gallery.domain.entity.PhotoEntity
+import com.daangn.leejihun.gallery.model.Photo
 import com.daangn.leejihun.gallery.presentation.R
 
 @Composable
 fun PhotoCard(
-    photo: PhotoEntity,
+    photo: Photo,
+    onPhotoClick: (Photo) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -25,7 +27,10 @@ fun PhotoCard(
     Card(
         modifier = modifier
             .size(width = 160.dp, height = 160.dp)
-            .clip(RoundedCornerShape(8.dp)),
+            .clip(RoundedCornerShape(8.dp))
+            .clickable {
+                onPhotoClick(photo)
+            },
     ) {
         AsyncImage(
             model = ImageRequest.Builder(context)

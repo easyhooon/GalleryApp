@@ -14,12 +14,13 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
-import com.daangn.leejihun.gallery.domain.entity.PhotoEntity
+import com.daangn.leejihun.gallery.model.Photo
 import com.daangn.leejihun.gallery.presentation.ui.component.PhotoCard
 
 @Composable
 fun GalleryScreen(
-    photoList: LazyPagingItems<PhotoEntity>,
+    photoList: LazyPagingItems<Photo>,
+    onPhotoClick: (Photo) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val screenWidth = LocalConfiguration.current.screenWidthDp.dp
@@ -44,7 +45,10 @@ fun GalleryScreen(
                     contentType = photoList.itemContentType(),
                 ) { index ->
                     photoList[index]?.let { photo ->
-                        PhotoCard(photo = photo)
+                        PhotoCard(
+                            photo = photo,
+                            onPhotoClick = onPhotoClick,
+                        )
                     }
                 }
             }
