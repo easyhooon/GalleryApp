@@ -15,8 +15,8 @@ class GalleryRepositoryImpl @Inject constructor(
 ) : GalleryRepository {
     override fun getPhotoList(): Flow<PagingData<PhotoEntity>> {
         return dataSource.getPhotoList().map { pagingData ->
-            pagingData.map { track ->
-                track.toEntity()
+            pagingData.map { photo ->
+                photo.toEntity()
             }
         }
     }
