@@ -1,9 +1,12 @@
+@file:Suppress("UnstableApiUsage", "INLINE_FROM_HIGHER_PLATFORM")
 plugins {
     daangn("jvm-kotlin")
 }
 
 dependencies {
-    implementation(libs.androidx.paging.common)
-
-    implementation(libs.javax.inject)
+    implementations(
+        libs.androidx.paging.common,
+        libs.javax.inject
+    )
+    compileOnly(libs.compose.stable.marker)
 }
