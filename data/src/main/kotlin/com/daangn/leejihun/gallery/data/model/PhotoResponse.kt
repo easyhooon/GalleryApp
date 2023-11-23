@@ -21,5 +21,5 @@ data class PhotoResponse(
     val url: String,
 
     @SerialName("download_url")
-    val downloadUrl: String
+    val downloadUrl: String,
 )
