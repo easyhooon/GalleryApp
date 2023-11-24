@@ -3,5 +3,6 @@
     <string name="photo_image">Photo Image</string>
     <string name="error_message">사진을 조회할 수 없습니다</string>
     <string name="retry">다시 시도</string>
+    <string name="arrow_forward_icon">Arrow Forward Icon\n</string>
 
 </resources>

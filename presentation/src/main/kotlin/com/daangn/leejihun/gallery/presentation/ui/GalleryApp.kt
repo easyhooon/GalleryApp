@@ -66,7 +66,10 @@ fun GalleryApp(
                     val args = entry.arguments ?: Bundle()
                     val photo = BundleCompat.getParcelable(args, "photo", Photo::class.java)
                     if (photo != null) {
-                        DetailScreen(photo = photo)
+                        DetailScreen(
+                            photo = photo,
+                            onNavigateBack = navController::popBackStack
+                        )
                     }
                 }
             }
