@@ -30,6 +30,7 @@ import com.daangn.leejihun.gallery.presentation.R
 import com.daangn.leejihun.gallery.presentation.model.Photo
 import com.daangn.leejihun.gallery.presentation.ui.component.PhotoCard
 import com.daangn.leejihun.gallery.presentation.ui.theme.Gray900
+import com.daangn.leejihun.gallery.presentation.ui.theme.H5
 import my.nanihadesuka.compose.LazyGridVerticalScrollbar
 
 @Composable
@@ -48,7 +49,12 @@ fun GalleryScreen(
         modifier = modifier.fillMaxSize(),
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(id = R.string.app_name)) },
+                title = {
+                    Text(
+                        text = stringResource(id = R.string.app_name),
+                        style = H5,
+                    )
+                },
             )
         },
     ) { innerPadding ->

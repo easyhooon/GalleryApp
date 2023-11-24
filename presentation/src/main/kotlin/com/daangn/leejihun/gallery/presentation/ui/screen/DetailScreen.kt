@@ -27,6 +27,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.daangn.leejihun.gallery.presentation.R
 import com.daangn.leejihun.gallery.presentation.model.Photo
+import com.daangn.leejihun.gallery.presentation.ui.theme.H5
 import net.engawapg.lib.zoomable.rememberZoomState
 import net.engawapg.lib.zoomable.zoomable
 
@@ -43,7 +44,10 @@ fun DetailScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(photo.author)
+                    Text(
+                        text = photo.author,
+                        style = H5,
+                    )
                 },
                 navigationIcon = {
                     IconButton(
