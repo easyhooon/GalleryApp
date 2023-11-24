@@ -5,7 +5,6 @@ import android.widget.Toast
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,11 +20,12 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.daangn.leejihun.gallery.presentation.DetailUiEvent
 import com.daangn.leejihun.gallery.presentation.DetailViewModel
 import com.daangn.leejihun.gallery.presentation.GalleryUiEvent
-import com.daangn.leejihun.gallery.presentation.model.Photo
 import com.daangn.leejihun.gallery.presentation.GalleryViewModel
+import com.daangn.leejihun.gallery.presentation.model.Photo
 import com.daangn.leejihun.gallery.presentation.ui.screen.DetailScreen
 import com.daangn.leejihun.gallery.presentation.ui.screen.GalleryScreen
 import com.daangn.leejihun.gallery.presentation.ui.theme.GalleryAppTheme
+import com.daangn.leejihun.gallery.presentation.util.ObserveAsEvents
 
 sealed class Destination(val route: String) {
     val id get() = "android-app://androidx.navigation/$route".hashCode()
@@ -53,24 +53,22 @@ fun GalleryApp(
                     val viewModel = hiltViewModel<GalleryViewModel>()
                     val photoList = viewModel.photoList.collectAsLazyPagingItems()
 
-                    LaunchedEffect(key1 = viewModel) {
-                        viewModel.eventFlow.collect { event ->
-                            when (event) {
-                                is GalleryUiEvent.OnNavigateDetail -> {
-                                    navController.navigate(
-                                        resId = Destination.Detail.id,
-                                        args = bundleOf(
-                                            "photo" to Photo(
-                                                id = event.photo.id,
-                                                author = event.photo.author,
-                                                width = event.photo.width,
-                                                height = event.photo.height,
-                                                url = event.photo.url,
-                                                downloadUrl = event.photo.downloadUrl,
-                                            ),
+                    ObserveAsEvents(flow = viewModel.eventFlow) {event ->
+                        when (event) {
+                            is GalleryUiEvent.OnNavigateDetail -> {
+                                navController.navigate(
+                                    resId = Destination.Detail.id,
+                                    args = bundleOf(
+                                        "photo" to Photo(
+                                            id = event.photo.id,
+                                            author = event.photo.author,
+                                            width = event.photo.width,
+                                            height = event.photo.height,
+                                            url = event.photo.url,
+                                            downloadUrl = event.photo.downloadUrl,
                                         ),
-                                    )
-                                }
+                                    ),
+                                )
                             }
                         }
                     }
@@ -91,16 +89,14 @@ fun GalleryApp(
                     val uiState by viewModel.detailUiState.collectAsStateWithLifecycle()
                     val context = LocalContext.current
 
-                    LaunchedEffect(key1 = viewModel) {
-                        viewModel.eventFlow.collect { event ->
-                            when (event) {
-                                is DetailUiEvent.OnNavigateBack -> {
-                                    navController.popBackStack()
-                                }
+                    ObserveAsEvents(flow = viewModel.eventFlow) { event ->
+                        when (event) {
+                            is DetailUiEvent.OnNavigateBack -> {
+                                navController.popBackStack()
+                            }
 
-                                is DetailUiEvent.ShowToast -> {
-                                    Toast.makeText(context, event.message.asString(context), Toast.LENGTH_SHORT).show()
-                                }
+                            is DetailUiEvent.ShowToast -> {
+                                Toast.makeText(context, event.message.asString(context), Toast.LENGTH_SHORT).show()
                             }
                         }
                     }

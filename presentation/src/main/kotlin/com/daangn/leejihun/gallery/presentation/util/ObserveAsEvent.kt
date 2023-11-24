@@ -9,6 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
+// https://medium.com/androiddevelopers/viewmodel-one-off-event-antipatterns-16a1da869b95
 // https://www.youtube.com/watch?v=njchj9d_Lf8&t=1218s
 @Composable
 fun <T> ObserveAsEvents(flow: Flow<T>, onEvent: (T) -> Unit) {
