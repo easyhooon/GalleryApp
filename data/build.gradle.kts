@@ -1,4 +1,5 @@
 @file:Suppress("UnstableApiUsage", "INLINE_FROM_HIGHER_PLATFORM", "DSL_SCOPE_VIOLATION")
+
 plugins {
     daangn("android-library")
     daangn("android-hilt")
@@ -26,7 +27,7 @@ dependencies {
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
-        freeCompilerArgs = freeCompilerArgs + listOf("-opt-in=kotlin.ExperimentalStdlibApi")
+        freeCompilerArgs = freeCompilerArgs +
+            listOf("-opt-in=kotlin.ExperimentalStdlibApi")
     }
 }
-

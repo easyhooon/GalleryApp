@@ -21,70 +21,80 @@ internal abstract class BuildLogicPlugin(private val block: Project.() -> Unit) 
     }
 }
 
-internal class AndroidApplicationPlugin : BuildLogicPlugin({
-    applyPlugins(Plugins.AndroidApplication, Plugins.KotlinAndroid)
+internal class AndroidApplicationPlugin : BuildLogicPlugin(
+    {
+        applyPlugins(Plugins.AndroidApplication, Plugins.KotlinAndroid)
 
-    extensions.configure<BaseAppModuleExtension> {
-        configureAndroid(this)
+        extensions.configure<BaseAppModuleExtension> {
+            configureAndroid(this)
 
-        defaultConfig {
-            targetSdk = ApplicationConstants.TargetSdk
-            versionCode = ApplicationConstants.VersionCode
-            versionName = ApplicationConstants.VersionName
+            defaultConfig {
+                targetSdk = ApplicationConstants.TargetSdk
+                versionCode = ApplicationConstants.VersionCode
+                versionName = ApplicationConstants.VersionName
+            }
         }
-    }
-})
+    },
+)
 
-internal class AndroidLibraryPlugin : BuildLogicPlugin({
-    applyPlugins(Plugins.AndroidLibrary, Plugins.KotlinAndroid)
+internal class AndroidLibraryPlugin : BuildLogicPlugin(
+    {
+        applyPlugins(Plugins.AndroidLibrary, Plugins.KotlinAndroid)
 
-    extensions.configure<LibraryExtension> {
-        configureAndroid(this)
+        extensions.configure<LibraryExtension> {
+            configureAndroid(this)
 
-        defaultConfig.apply {
-            targetSdk = ApplicationConstants.TargetSdk
+            defaultConfig.apply {
+                targetSdk = ApplicationConstants.TargetSdk
+            }
         }
-    }
-})
+    },
+)
 
-internal class JvmKotlinPlugin : BuildLogicPlugin({
-    applyPlugins(Plugins.JavaLibrary, Plugins.KotlinJvm)
+internal class JvmKotlinPlugin : BuildLogicPlugin(
+    {
+        applyPlugins(Plugins.JavaLibrary, Plugins.KotlinJvm)
 
-    extensions.configure<JavaPluginExtension> {
-        sourceCompatibility = ApplicationConstants.JavaVersion
-        targetCompatibility = ApplicationConstants.JavaVersion
-    }
-
-    extensions.configure<KotlinProjectExtension> {
-        jvmToolchain(ApplicationConstants.JavaVersionAsInt)
-    }
-
-    extensions.configure<SourceSetContainer> {
-        getByName("main").java.srcDir("src/main/kotlin")
-        getByName("test").java.srcDir("src/test/kotlin")
-    }
-
-    dependencies.add("detektPlugins", libs.findLibrary("detekt-plugin-formatting").get())
-})
-
-internal class AndroidComposePlugin : BuildLogicPlugin({
-    extensions.configure<com.android.build.gradle.BaseExtension> {
-        buildFeatures.compose = true
-
-        composeOptions {
-            kotlinCompilerExtensionVersion =
-                libs.findVersion("androidx-compose-compiler").get().toString()
+        extensions.configure<JavaPluginExtension> {
+            sourceCompatibility = ApplicationConstants.JavaVersion
+            targetCompatibility = ApplicationConstants.JavaVersion
         }
-    }
-})
 
-internal class AndroidHiltPlugin : BuildLogicPlugin({
-    applyPlugins(
-        libs.findPlugin("android-hilt").get().get().pluginId,
-        Plugins.Ksp,
-    )
+        extensions.configure<KotlinProjectExtension> {
+            jvmToolchain(ApplicationConstants.JavaVersionAsInt)
+        }
 
-    dependencies.add("ksp", libs.findLibrary("android-hilt-compile").get())
-    dependencies.add("implementation", libs.findLibrary("android-hilt-runtime").get())
-})
+        extensions.configure<SourceSetContainer> {
+            getByName("main").java.srcDir("src/main/kotlin")
+            getByName("test").java.srcDir("src/test/kotlin")
+        }
+
+        dependencies.add("detektPlugins", libs.findLibrary("detekt-plugin-formatting").get())
+    },
+)
+
+internal class AndroidComposePlugin : BuildLogicPlugin(
+    {
+        extensions.configure<com.android.build.gradle.BaseExtension> {
+            buildFeatures.compose = true
+
+            composeOptions {
+                kotlinCompilerExtensionVersion =
+                    libs.findVersion("androidx-compose-compiler").get().toString()
+            }
+        }
+    },
+)
+
+internal class AndroidHiltPlugin : BuildLogicPlugin(
+    {
+        applyPlugins(
+            libs.findPlugin("android-hilt").get().get().pluginId,
+            Plugins.Ksp,
+        )
+
+        dependencies.add("ksp", libs.findLibrary("android-hilt-compile").get())
+        dependencies.add("implementation", libs.findLibrary("android-hilt-runtime").get())
+    },
+)
 

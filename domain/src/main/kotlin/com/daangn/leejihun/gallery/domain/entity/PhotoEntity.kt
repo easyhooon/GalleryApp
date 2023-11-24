@@ -6,5 +6,5 @@ data class PhotoEntity(
     val width: Int,
     val height: Int,
     val url: String,
-    val downloadUrl: String
+    val downloadUrl: String,
 )

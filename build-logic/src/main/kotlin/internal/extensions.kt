@@ -10,15 +10,15 @@ import org.gradle.kotlin.dsl.NamedDomainObjectContainerScope
 import org.gradle.kotlin.dsl.getByType
 
 internal val Project.libs
-  get() = extensions.getByType<VersionCatalogsExtension>().named("libs")
+    get() = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
 internal fun Project.applyPlugins(vararg plugins: String) {
-  plugins.forEach(pluginManager::apply)
+    plugins.forEach(pluginManager::apply)
 }
 
 internal inline operator fun <T : Any, C : NamedDomainObjectContainer<T>> C.invoke(
-  configuration: Action<NamedDomainObjectContainerScope<T>>,
+    configuration: Action<NamedDomainObjectContainerScope<T>>,
 ): C =
-  apply {
-    configuration.execute(NamedDomainObjectContainerScope.of(this))
-  }
+    apply {
+        configuration.execute(NamedDomainObjectContainerScope.of(this))
+    }

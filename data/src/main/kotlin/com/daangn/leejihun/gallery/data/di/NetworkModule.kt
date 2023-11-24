@@ -17,7 +17,7 @@ import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
-private const val MaxTimeoutMillis = 10_000L
+private const val MAX_TIME_OUT_MILLIS = 10_000L
 
 private val jsonRule = Json {
     encodeDefaults = true
@@ -48,7 +48,7 @@ internal object NetworkModule {
     @Provides
     internal fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
-            .connectTimeout(MaxTimeoutMillis, TimeUnit.MILLISECONDS)
+            .connectTimeout(MAX_TIME_OUT_MILLIS, TimeUnit.MILLISECONDS)
             .addInterceptor { chain: Interceptor.Chain ->
                 val request = chain.request().newBuilder()
                     .addHeader("Content-Type", "application/json")
