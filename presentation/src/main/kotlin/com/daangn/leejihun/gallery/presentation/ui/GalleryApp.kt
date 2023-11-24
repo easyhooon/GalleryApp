@@ -19,6 +19,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.daangn.leejihun.gallery.presentation.DetailUiEvent
+import com.daangn.leejihun.gallery.presentation.DetailViewModel
 import com.daangn.leejihun.gallery.presentation.model.Photo
 import com.daangn.leejihun.gallery.presentation.GalleryViewModel
 import com.daangn.leejihun.gallery.presentation.ui.screen.DetailScreen
@@ -34,14 +35,13 @@ sealed class Destination(val route: String) {
 
 @Composable
 fun GalleryApp(
-    viewModel: GalleryViewModel = hiltViewModel(),
+    modifier: Modifier = Modifier,
 ) {
     val navController = rememberNavController()
-    val photoList = viewModel.photoList.collectAsLazyPagingItems()
 
     GalleryAppTheme {
         Surface(
-            modifier = Modifier.fillMaxSize(),
+            modifier = modifier.fillMaxSize(),
             color = Color.White,
         ) {
             NavHost(
@@ -49,6 +49,9 @@ fun GalleryApp(
                 startDestination = "gallery",
             ) {
                 composable(Destination.Gallery.route) {
+                    val viewModel = hiltViewModel<GalleryViewModel>()
+                    val photoList = viewModel.photoList.collectAsLazyPagingItems()
+
                     GalleryScreen(
                         photoList = photoList,
                         onPhotoClick = {
@@ -72,6 +75,7 @@ fun GalleryApp(
                     val args = entry.arguments ?: Bundle()
                     val photo = BundleCompat.getParcelable(args, "photo", Photo::class.java)
 
+                    val viewModel = hiltViewModel<DetailViewModel>()
                     val uiState by viewModel.detailUiState.collectAsStateWithLifecycle()
                     val context = LocalContext.current
 
@@ -81,6 +85,7 @@ fun GalleryApp(
                                 is DetailUiEvent.ShowToast -> {
                                     Toast.makeText(context, event.message.asString(context), Toast.LENGTH_SHORT).show()
                                 }
+                                else -> {}
                             }
                         }
                     }
