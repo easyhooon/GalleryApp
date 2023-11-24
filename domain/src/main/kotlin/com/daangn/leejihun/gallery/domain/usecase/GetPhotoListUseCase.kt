@@ -8,7 +8,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class GetTrackListUseCase @Inject constructor(
+class GetPhotoListUseCase @Inject constructor(
     private val repository: GalleryRepository,
 ) {
     operator fun invoke(): Flow<PagingData<PhotoEntity>> {

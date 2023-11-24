@@ -2,6 +2,9 @@
 
 package com.daangn.leejihun.gallery.presentation.ui.screen
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,27 +20,36 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import coil.ImageLoader
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import coil.request.SuccessResult
+import com.daangn.leejihun.gallery.presentation.DetailUiState
 import com.daangn.leejihun.gallery.presentation.R
 import com.daangn.leejihun.gallery.presentation.model.Photo
 import com.daangn.leejihun.gallery.presentation.ui.theme.H5
+import kotlinx.coroutines.launch
 import net.engawapg.lib.zoomable.rememberZoomState
 import net.engawapg.lib.zoomable.zoomable
+import java.io.ByteArrayOutputStream
 
 @Composable
 fun DetailScreen(
+    uiState: DetailUiState,
     photo: Photo,
     onNavigateBack: () -> Unit,
+    saveImageFile: (String, ByteArray) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -63,7 +75,15 @@ fun DetailScreen(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = {}
+                onClick = {
+                    scope.launch {
+                        val byteArray = createByteArrayFromUrl(context, photo)
+                        saveImageFile(
+                            "IMG_${System.currentTimeMillis()}.png",
+                            byteArray,
+                        )
+                    }
+                }
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_save),
@@ -88,6 +108,24 @@ fun DetailScreen(
                     .zoomable(rememberZoomState()),
                 contentScale = ContentScale.Fit,
             )
+
+            if (uiState.isLoading) {
+                LoadingScreen()
+            }
         }
     }
+}
+
+suspend fun createByteArrayFromUrl(context: Context, photo: Photo): ByteArray {
+    val imageLoader = ImageLoader(context)
+    val request = ImageRequest.Builder(context)
+        .data(photo.downloadUrl)
+        .build()
+
+    val result = (imageLoader.execute(request) as SuccessResult).drawable
+    val bitmap = (result as BitmapDrawable).bitmap
+
+    val stream = ByteArrayOutputStream()
+    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+    return stream.toByteArray()
 }

@@ -20,4 +20,8 @@ class GalleryRepositoryImpl @Inject constructor(
             }
         }
     }
+
+    override fun saveImageFile(fileName: String, byteArray: ByteArray): String {
+        return dataSource.saveImageFile(fileName, byteArray)
+    }
 }

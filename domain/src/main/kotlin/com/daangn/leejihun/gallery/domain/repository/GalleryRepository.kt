@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface GalleryRepository {
     fun getPhotoList(): Flow<PagingData<PhotoEntity>>
+    fun saveImageFile(fileName: String, byteArray: ByteArray): String
 }
