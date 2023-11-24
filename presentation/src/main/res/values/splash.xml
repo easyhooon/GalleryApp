@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <style name="Theme.Gallery.Splash" parent="Theme.SplashScreen">
+    <item name="windowSplashScreenBackground">#FFFFFFFF</item>
+    <item name="windowSplashScreenAnimatedIcon">@drawable/ic_app</item>
+    <item name="postSplashScreenTheme">@style/Theme.Gallery</item>
+  </style>
+
+</resources>

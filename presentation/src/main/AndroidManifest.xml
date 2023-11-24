@@ -5,6 +5,7 @@
         <activity
             android:name=".ui.GalleryActivity"
             android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.Gallery.Splash"
             android:exported="true">
 
             <intent-filter>
