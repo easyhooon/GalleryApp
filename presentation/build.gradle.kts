@@ -26,6 +26,7 @@ dependencies {
         libs.androidx.paging.runtime,
         libs.androidx.paging.compose,
         libs.timber,
+        libs.zoomable,
         libs.bundles.androidx.compose,
         libs.bundles.androidx.lifecycle,
         libs.bundles.coil,

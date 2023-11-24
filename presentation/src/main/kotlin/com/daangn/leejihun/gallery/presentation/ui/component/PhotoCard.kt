@@ -13,7 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.daangn.leejihun.gallery.model.Photo
+import com.daangn.leejihun.gallery.presentation.model.Photo
 import com.daangn.leejihun.gallery.presentation.R
 
 @Composable

@@ -13,7 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.daangn.leejihun.gallery.model.Photo
+import com.daangn.leejihun.gallery.presentation.model.Photo
 import com.daangn.leejihun.gallery.presentation.GalleryViewModel
 import com.daangn.leejihun.gallery.presentation.ui.screen.DetailScreen
 import com.daangn.leejihun.gallery.presentation.ui.screen.GalleryScreen

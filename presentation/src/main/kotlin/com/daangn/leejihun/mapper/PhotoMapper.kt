@@ -1,7 +1,7 @@
 package com.daangn.leejihun.mapper
 
 import com.daangn.leejihun.gallery.domain.entity.PhotoEntity
-import com.daangn.leejihun.gallery.model.Photo
+import com.daangn.leejihun.gallery.presentation.model.Photo
 
 internal fun PhotoEntity.toUiModel(): Photo {
     return Photo(

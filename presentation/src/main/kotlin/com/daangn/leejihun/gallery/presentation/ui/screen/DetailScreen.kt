@@ -22,8 +22,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.daangn.leejihun.gallery.model.Photo
+import com.daangn.leejihun.gallery.presentation.model.Photo
 import com.daangn.leejihun.gallery.presentation.R
+import net.engawapg.lib.zoomable.rememberZoomState
+import net.engawapg.lib.zoomable.zoomable
 
 @Composable
 fun DetailScreen(
@@ -65,7 +67,8 @@ fun DetailScreen(
                 contentDescription = stringResource(id = R.string.photo_image),
                 modifier = modifier
                     .fillMaxWidth()
-                    .align(Alignment.Center),
+                    .align(Alignment.Center)
+                    .zoomable(rememberZoomState()),
                 contentScale = ContentScale.Fit,
             )
         }

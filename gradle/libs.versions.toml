@@ -39,7 +39,7 @@ javax-inject = "1"
 retrofit = "2.9.0"
 okhttp = "5.0.0-alpha.11"
 timber = "5.0.1"
-compose-stable-marker = "1.0.3"
+zoomable = "1.5.2"
 
 [libraries]
 
@@ -95,6 +95,7 @@ desugar-jdk = { group = "com.android.tools", name = "desugar_jdk_libs", version.
 detekt-plugin-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "kotlin-detekt" }
 javax-inject = { group = "javax.inject", name = "javax.inject", version = "1" }
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
+zoomable = { group = "net.engawapg.lib", name = "zoomable", version.ref = "zoomable"}
 
 [plugins]
 

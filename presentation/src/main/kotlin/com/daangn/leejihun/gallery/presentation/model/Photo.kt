@@ -1,4 +1,4 @@
-package com.daangn.leejihun.gallery.model
+package com.daangn.leejihun.gallery.presentation.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
