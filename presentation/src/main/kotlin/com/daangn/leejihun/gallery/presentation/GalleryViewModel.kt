@@ -12,10 +12,11 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 sealed interface GalleryUiEvent {
-    data class OnNavigateDetail(val photo: Photo) : DetailUiEvent
+    data class OnNavigateDetail(val photo: Photo) : GalleryUiEvent
 }
 
 @HiltViewModel
@@ -32,4 +33,10 @@ class GalleryViewModel @Inject constructor(
             }
         }
         .cachedIn(viewModelScope)
+
+    fun onNavigateDetail(photo: Photo) {
+        viewModelScope.launch {
+            _eventFlow.emit(GalleryUiEvent.OnNavigateDetail(photo = photo))
+        }
+    }
 }

@@ -20,6 +20,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.daangn.leejihun.gallery.presentation.DetailUiEvent
 import com.daangn.leejihun.gallery.presentation.DetailViewModel
+import com.daangn.leejihun.gallery.presentation.GalleryUiEvent
 import com.daangn.leejihun.gallery.presentation.model.Photo
 import com.daangn.leejihun.gallery.presentation.GalleryViewModel
 import com.daangn.leejihun.gallery.presentation.ui.screen.DetailScreen
@@ -52,25 +53,36 @@ fun GalleryApp(
                     val viewModel = hiltViewModel<GalleryViewModel>()
                     val photoList = viewModel.photoList.collectAsLazyPagingItems()
 
+                    LaunchedEffect(key1 = viewModel) {
+                        viewModel.eventFlow.collect { event ->
+                            when (event) {
+                                is GalleryUiEvent.OnNavigateDetail -> {
+                                    navController.navigate(
+                                        resId = Destination.Detail.id,
+                                        args = bundleOf(
+                                            "photo" to Photo(
+                                                id = event.photo.id,
+                                                author = event.photo.author,
+                                                width = event.photo.width,
+                                                height = event.photo.height,
+                                                url = event.photo.url,
+                                                downloadUrl = event.photo.downloadUrl,
+                                            ),
+                                        ),
+                                    )
+                                }
+                            }
+                        }
+                    }
+
                     GalleryScreen(
                         photoList = photoList,
-                        onPhotoClick = {
-                            navController.navigate(
-                                resId = Destination.Detail.id,
-                                args = bundleOf(
-                                    "photo" to Photo(
-                                        id = it.id,
-                                        author = it.author,
-                                        width = it.width,
-                                        height = it.height,
-                                        url = it.url,
-                                        downloadUrl = it.downloadUrl,
-                                    ),
-                                ),
-                            )
+                        onPhotoClick = { photo ->
+                            viewModel.onNavigateDetail(photo = photo)
                         },
                     )
                 }
+
                 composable(Destination.Detail.route) { entry ->
                     val args = entry.arguments ?: Bundle()
                     val photo = BundleCompat.getParcelable(args, "photo", Photo::class.java)
@@ -82,10 +94,13 @@ fun GalleryApp(
                     LaunchedEffect(key1 = viewModel) {
                         viewModel.eventFlow.collect { event ->
                             when (event) {
+                                is DetailUiEvent.OnNavigateBack -> {
+                                    navController.popBackStack()
+                                }
+
                                 is DetailUiEvent.ShowToast -> {
                                     Toast.makeText(context, event.message.asString(context), Toast.LENGTH_SHORT).show()
                                 }
-                                else -> {}
                             }
                         }
                     }
@@ -94,7 +109,9 @@ fun GalleryApp(
                         DetailScreen(
                             uiState = uiState,
                             photo = photo,
-                            onNavigateBack = navController::popBackStack,
+                            onNavigateBack = {
+                                viewModel.onNavigateBack()
+                            },
                             saveImageFile = { fileName, byteArray ->
                                 viewModel.saveImageFile(
                                     fileName = fileName,

@@ -50,4 +50,10 @@ class DetailViewModel @Inject constructor(
             }
         }
     }
+
+    fun onNavigateBack() {
+        viewModelScope.launch {
+            _eventFlow.emit(DetailUiEvent.OnNavigateBack)
+        }
+    }
 }
