@@ -4,6 +4,7 @@
     <application android:theme="@style/Theme.Gallery">
         <activity
             android:name=".ui.GalleryActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true">
 
             <intent-filter>
