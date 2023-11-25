@@ -9,11 +9,21 @@ import com.daangn.leejihun.gallery.presentation.mapper.toUiModel
 import com.daangn.leejihun.gallery.presentation.model.Photo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
+data class GalleryUiState(
+    val isSearchVisible: Boolean = false,
+    val isLoading: Boolean = false,
+    val error: Throwable? = null,
+)
 
 sealed interface GalleryUiEvent {
     data class OnNavigateDetail(val photo: Photo) : GalleryUiEvent
@@ -23,6 +33,9 @@ sealed interface GalleryUiEvent {
 class GalleryViewModel @Inject constructor(
     getPhotoListUseCase: GetPhotoListUseCase,
 ) : ViewModel() {
+    private val _uiState = MutableStateFlow(GalleryUiState())
+    val uiState: StateFlow<GalleryUiState> = _uiState.asStateFlow()
+
     private val _eventFlow = MutableSharedFlow<GalleryUiEvent>()
     val eventFlow: SharedFlow<GalleryUiEvent> = _eventFlow.asSharedFlow()
 
@@ -37,6 +50,12 @@ class GalleryViewModel @Inject constructor(
     fun onNavigateDetail(photo: Photo) {
         viewModelScope.launch {
             _eventFlow.emit(GalleryUiEvent.OnNavigateDetail(photo = photo))
+        }
+    }
+
+    fun toggleSearchVisibility() {
+        _uiState.update {
+            it.copy(isSearchVisible = !_uiState.value.isSearchVisible)
         }
     }
 }

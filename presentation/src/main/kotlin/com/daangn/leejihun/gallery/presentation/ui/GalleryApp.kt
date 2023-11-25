@@ -52,8 +52,9 @@ fun GalleryApp(
                 composable(Destination.Gallery.route) {
                     val viewModel = hiltViewModel<GalleryViewModel>()
                     val photoList = viewModel.photoList.collectAsLazyPagingItems()
+                    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-                    ObserveAsEvents(flow = viewModel.eventFlow) {event ->
+                    ObserveAsEvents(flow = viewModel.eventFlow) { event ->
                         when (event) {
                             is GalleryUiEvent.OnNavigateDetail -> {
                                 navController.navigate(
@@ -75,9 +76,11 @@ fun GalleryApp(
 
                     GalleryScreen(
                         photoList = photoList,
+                        uiState = uiState,
                         onPhotoClick = { photo ->
                             viewModel.onNavigateDetail(photo = photo)
                         },
+                        toggleSearchVisibility = viewModel::toggleSearchVisibility,
                     )
                 }
 
@@ -86,7 +89,7 @@ fun GalleryApp(
                     val photo = BundleCompat.getParcelable(args, "photo", Photo::class.java)
 
                     val viewModel = hiltViewModel<DetailViewModel>()
-                    val uiState by viewModel.detailUiState.collectAsStateWithLifecycle()
+                    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
                     val context = LocalContext.current
 
                     ObserveAsEvents(flow = viewModel.eventFlow) { event ->

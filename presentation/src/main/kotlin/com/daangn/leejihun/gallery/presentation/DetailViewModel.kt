@@ -29,15 +29,15 @@ sealed interface DetailUiEvent {
 class DetailViewModel @Inject constructor(
     private val saveImageFileUseCase: SaveImageFileUseCase,
 ) : ViewModel() {
-    private val _detailUiState = MutableStateFlow(DetailUiState())
-    val detailUiState: StateFlow<DetailUiState> = _detailUiState.asStateFlow()
+    private val _uiState = MutableStateFlow(DetailUiState())
+    val uiState: StateFlow<DetailUiState> = _uiState.asStateFlow()
 
     private val _eventFlow = MutableSharedFlow<DetailUiEvent>()
     val eventFlow: SharedFlow<DetailUiEvent> = _eventFlow.asSharedFlow()
 
     fun saveImageFile(fileName: String, byteArray: ByteArray) {
         viewModelScope.launch {
-            _detailUiState.update {
+            _uiState.update {
                 it.copy(isLoading = true)
             }
             saveImageFileUseCase(
@@ -45,7 +45,7 @@ class DetailViewModel @Inject constructor(
                 byteArray = byteArray,
             )
             _eventFlow.emit(DetailUiEvent.ShowToast(UiText.StringResource(R.string.photo_save_complete)))
-            _detailUiState.update {
+            _uiState.update {
                 it.copy(isLoading = false)
             }
         }
