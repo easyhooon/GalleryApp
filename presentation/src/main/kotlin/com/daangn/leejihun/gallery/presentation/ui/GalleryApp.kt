@@ -77,6 +77,8 @@ fun GalleryApp(
                     GalleryScreen(
                         photoList = photoList,
                         uiState = uiState,
+                        searchQuery = viewModel.searchQuery,
+                        updateSearchQuery = viewModel::updateSearchQuery,
                         onPhotoClick = { photo ->
                             viewModel.onNavigateDetail(photo = photo)
                         },

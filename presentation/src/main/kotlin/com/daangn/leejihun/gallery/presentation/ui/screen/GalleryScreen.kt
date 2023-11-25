@@ -35,6 +35,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.min
 import androidx.paging.ItemSnapshotList
@@ -55,6 +56,8 @@ import my.nanihadesuka.compose.LazyGridVerticalScrollbar
 fun GalleryScreen(
     photoList: LazyPagingItems<Photo>,
     uiState: GalleryUiState,
+    searchQuery: TextFieldValue,
+    updateSearchQuery: (TextFieldValue) -> Unit,
     onPhotoClick: (Photo) -> Unit,
     toggleSearchVisibility: () -> Unit,
     getCurrentPhotoListSnapshot: (ItemSnapshotList<Photo>) -> Unit,
@@ -109,9 +112,9 @@ fun GalleryScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(8.dp),
-                        value = "",
+                        value = searchQuery,
                         singleLine = true,
-                        onValueChange = {},
+                        onValueChange = updateSearchQuery,
                         leadingIcon = {
                             Icon(
                                 imageVector = Icons.Filled.Search,
