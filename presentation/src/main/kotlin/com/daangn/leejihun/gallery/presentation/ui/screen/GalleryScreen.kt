@@ -1,8 +1,11 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 
 package com.daangn.leejihun.gallery.presentation.ui.screen
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.LinearOutSlowInEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -167,6 +170,12 @@ fun GalleryScreen(
                                 PhotoCard(
                                     photo = photo,
                                     onPhotoClick = onPhotoClick,
+                                    modifier = Modifier.animateItemPlacement(
+                                        animationSpec = tween(
+                                            durationMillis = 500,
+                                            easing = LinearOutSlowInEasing,
+                                        ),
+                                    ),
                                 )
                             }
                         }
