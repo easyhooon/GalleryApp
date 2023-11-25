@@ -38,6 +38,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
@@ -70,6 +71,7 @@ fun GalleryScreen(
 ) {
     val screenWidth = LocalConfiguration.current.screenWidthDp.dp
     val lazyGridState = rememberLazyGridState()
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     val isLoading = photoList.loadState.refresh is LoadState.Loading
     val isError = photoList.loadState.refresh is LoadState.Error
@@ -77,6 +79,13 @@ fun GalleryScreen(
     LaunchedEffect(key1 = uiState.isSearchVisible) {
         if (uiState.isSearchVisible) {
             getCurrentPhotoListSnapshot(photoList.itemSnapshotList)
+        }
+    }
+
+    LaunchedEffect(key1 = searchQuery.text) {
+        if (searchQuery.text == "") {
+            keyboardController?.hide()
+            lazyGridState.animateScrollToItem(0)
         }
     }
 
