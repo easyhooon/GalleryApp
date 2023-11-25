@@ -1,6 +1,5 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-
 package com.daangn.leejihun.gallery.presentation.ui.screen
 
 import androidx.compose.animation.AnimatedVisibility
@@ -16,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -29,6 +29,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
@@ -36,6 +37,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.min
+import androidx.paging.ItemSnapshotList
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemContentType
@@ -55,6 +57,7 @@ fun GalleryScreen(
     uiState: GalleryUiState,
     onPhotoClick: (Photo) -> Unit,
     toggleSearchVisibility: () -> Unit,
+    getCurrentPhotoListSnapshot: (ItemSnapshotList<Photo>) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val screenWidth = LocalConfiguration.current.screenWidthDp.dp
@@ -63,13 +66,19 @@ fun GalleryScreen(
     val isLoading = photoList.loadState.refresh is LoadState.Loading
     val isError = photoList.loadState.refresh is LoadState.Error
 
+    LaunchedEffect(key1 = uiState.isSearchVisible) {
+        if (uiState.isSearchVisible) {
+            getCurrentPhotoListSnapshot(photoList.itemSnapshotList)
+        }
+    }
+
     Scaffold(
         modifier = modifier.fillMaxSize(),
         topBar = {
             TopAppBar(
                 title = {
                     Row(
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Text(
                             text = stringResource(id = R.string.gallery),
@@ -77,12 +86,12 @@ fun GalleryScreen(
                         )
                         Spacer(modifier = Modifier.weight(1f))
                         IconButton(
-                            onClick = toggleSearchVisibility
+                            onClick = toggleSearchVisibility,
                         ) {
                             Icon(
                                 imageVector = Icons.Filled.Search,
                                 contentDescription = stringResource(R.string.search_icon),
-                                modifier = Modifier.size(32.dp)
+                                modifier = Modifier.size(32.dp),
                             )
                         }
                     }
@@ -110,44 +119,74 @@ fun GalleryScreen(
                             )
                         },
                         keyboardOptions = KeyboardOptions(
-                            imeAction = ImeAction.Done
+                            imeAction = ImeAction.Done,
                         ),
                         placeholder = {
                             Text(
                                 text = stringResource(R.string.search),
-                                style = TextLMedium
+                                style = TextLMedium,
                             )
                         },
                     )
                 }
-                when {
-                    isLoading -> LoadingScreen()
-                    isError -> ErrorScreen(onClickRetryButton = { photoList.retry() })
-                    else -> {
-                        LazyGridVerticalScrollbar(
+                if (uiState.isSearchVisible) {
+                    LazyGridVerticalScrollbar(
+                        state = lazyGridState,
+                        thumbColor = Gray900,
+                        thumbSelectedColor = colorScheme.primary,
+                        thickness = 8.dp,
+                    ) {
+                        LazyVerticalGrid(
+                            columns = GridCells.Adaptive(minSize = min(screenWidth, 160.dp)),
+                            modifier = modifier.fillMaxSize(),
                             state = lazyGridState,
-                            thumbColor = Gray900,
-                            thumbSelectedColor = colorScheme.primary,
-                            thickness = 8.dp,
+                            contentPadding = PaddingValues(4.dp),
+                            verticalArrangement = Arrangement.spacedBy(4.dp),
+                            horizontalArrangement = Arrangement.spacedBy(4.dp),
                         ) {
-                            LazyVerticalGrid(
-                                columns = GridCells.Adaptive(minSize = min(screenWidth, 160.dp)),
-                                modifier = modifier.fillMaxSize(),
-                                state = lazyGridState,
-                                contentPadding = PaddingValues(4.dp),
-                                verticalArrangement = Arrangement.spacedBy(4.dp),
-                                horizontalArrangement = Arrangement.spacedBy(4.dp),
-                            ) {
+                            uiState.currentPhotoListSnapshot?.let { currentPhotoList ->
                                 items(
-                                    count = photoList.itemCount,
-                                    key = photoList.itemKey(key = { it.id }),
-                                    contentType = photoList.itemContentType(),
-                                ) { index ->
-                                    photoList[index]?.let { photo ->
-                                        PhotoCard(
-                                            photo = photo,
-                                            onPhotoClick = onPhotoClick,
-                                        )
+                                    items = currentPhotoList,
+                                    key = { it.id },
+                                ) {photo ->
+                                    PhotoCard(
+                                        photo = photo,
+                                        onPhotoClick = onPhotoClick,
+                                    )
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    when {
+                        isLoading -> LoadingScreen()
+                        isError -> ErrorScreen(onClickRetryButton = { photoList.retry() })
+                        else -> {
+                            LazyGridVerticalScrollbar(
+                                state = lazyGridState,
+                                thumbColor = Gray900,
+                                thumbSelectedColor = colorScheme.primary,
+                                thickness = 8.dp,
+                            ) {
+                                LazyVerticalGrid(
+                                    columns = GridCells.Adaptive(minSize = min(screenWidth, 160.dp)),
+                                    modifier = modifier.fillMaxSize(),
+                                    state = lazyGridState,
+                                    contentPadding = PaddingValues(4.dp),
+                                    verticalArrangement = Arrangement.spacedBy(4.dp),
+                                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                                ) {
+                                    items(
+                                        count = photoList.itemCount,
+                                        key = photoList.itemKey(key = { it.id }),
+                                        contentType = photoList.itemContentType(),
+                                    ) { index ->
+                                        photoList[index]?.let { photo ->
+                                            PhotoCard(
+                                                photo = photo,
+                                                onPhotoClick = onPhotoClick,
+                                            )
+                                        }
                                     }
                                 }
                             }

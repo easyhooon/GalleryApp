@@ -81,6 +81,9 @@ fun GalleryApp(
                             viewModel.onNavigateDetail(photo = photo)
                         },
                         toggleSearchVisibility = viewModel::toggleSearchVisibility,
+                        getCurrentPhotoListSnapshot = { photoListSnapshot ->
+                            viewModel.getCurrentPhotoListSnapshot(photoListSnapshot)
+                        },
                     )
                 }
 
