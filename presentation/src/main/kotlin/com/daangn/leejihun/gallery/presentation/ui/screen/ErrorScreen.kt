@@ -19,8 +19,8 @@ import com.daangn.leejihun.gallery.presentation.ui.theme.Title
 
 @Composable
 fun ErrorScreen(
-    modifier: Modifier = Modifier,
     onClickRetryButton: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier.fillMaxSize(),
