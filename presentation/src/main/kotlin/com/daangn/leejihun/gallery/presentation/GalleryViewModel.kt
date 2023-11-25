@@ -25,11 +25,13 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.util.Locale
 import javax.inject.Inject
 
 data class GalleryUiState(
     val isSearchVisible: Boolean = false,
-    val currentPhotoListSnapshot: List<Photo>? = null,
+    val currentPhotoListSnapshot: List<Photo> = listOf(),
+    val filteredPhotoList: List<Photo> = listOf(),
     val isLoading: Boolean = false,
     val error: Throwable? = null,
 )
@@ -76,11 +78,27 @@ class GalleryViewModel @Inject constructor(
 
     fun getCurrentPhotoListSnapshot(photoListSnapshot: ItemSnapshotList<Photo>) {
         _uiState.update {
-            it.copy(currentPhotoListSnapshot = photoListSnapshot.items)
+            it.copy(
+                currentPhotoListSnapshot = photoListSnapshot.items,
+                filteredPhotoList = photoListSnapshot.items,
+            )
         }
     }
 
     fun updateSearchQuery(newSearchQuery: TextFieldValue) {
         searchQuery = newSearchQuery
+        if (searchQuery.text.isNotEmpty()) {
+            _uiState.update {
+                it.copy(
+                    filteredPhotoList = _uiState.value.currentPhotoListSnapshot.filter { photo ->
+                        photo.author.lowercase(Locale.ROOT).contains(searchQuery.text.lowercase(Locale.ROOT))
+                    },
+                )
+            }
+        } else {
+            _uiState.update {
+                it.copy(filteredPhotoList = _uiState.value.currentPhotoListSnapshot)
+            }
+        }
     }
 }

@@ -6,7 +6,7 @@
     <string name="arrow_forward_icon">Arrow Forward Icon\n</string>
     <string name="save_image">사진 저장</string>
     <string name="photo_save_complete">사진을 저장하였습니다.</string>
-    <string name="search">검색</string>
+    <string name="author_search">작가(author) 검색</string>
     <string name="search_icon">Search Icon</string>
 
 </resources>

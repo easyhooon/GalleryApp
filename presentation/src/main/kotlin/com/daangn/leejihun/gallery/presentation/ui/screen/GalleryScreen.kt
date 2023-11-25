@@ -3,6 +3,7 @@
 package com.daangn.leejihun.gallery.presentation.ui.screen
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,6 +21,7 @@ import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.outlined.Cancel
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -121,12 +123,23 @@ fun GalleryScreen(
                                 contentDescription = stringResource(R.string.search_icon),
                             )
                         },
+                        trailingIcon = {
+                            if (searchQuery.text.isNotEmpty()) {
+                                Icon(
+                                    imageVector = Icons.Outlined.Cancel,
+                                    contentDescription = stringResource(R.string.search_icon),
+                                    modifier.clickable {
+                                        updateSearchQuery(TextFieldValue(""))
+                                    },
+                                )
+                            }
+                        },
                         keyboardOptions = KeyboardOptions(
                             imeAction = ImeAction.Done,
                         ),
                         placeholder = {
                             Text(
-                                text = stringResource(R.string.search),
+                                text = stringResource(R.string.author_search),
                                 style = TextLMedium,
                             )
                         },
@@ -147,16 +160,14 @@ fun GalleryScreen(
                             verticalArrangement = Arrangement.spacedBy(4.dp),
                             horizontalArrangement = Arrangement.spacedBy(4.dp),
                         ) {
-                            uiState.currentPhotoListSnapshot?.let { currentPhotoList ->
-                                items(
-                                    items = currentPhotoList,
-                                    key = { it.id },
-                                ) {photo ->
-                                    PhotoCard(
-                                        photo = photo,
-                                        onPhotoClick = onPhotoClick,
-                                    )
-                                }
+                            items(
+                                items = uiState.filteredPhotoList,
+                                key = { it.id },
+                            ) { photo ->
+                                PhotoCard(
+                                    photo = photo,
+                                    onPhotoClick = onPhotoClick,
+                                )
                             }
                         }
                     }
