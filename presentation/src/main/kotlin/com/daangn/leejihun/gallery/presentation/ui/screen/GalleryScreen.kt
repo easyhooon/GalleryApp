@@ -83,7 +83,7 @@ fun GalleryScreen(
     }
 
     LaunchedEffect(key1 = searchQuery.text) {
-        if (searchQuery.text == "") {
+        if (uiState.isSearchVisible && searchQuery.text == "") {
             keyboardController?.hide()
             lazyGridState.animateScrollToItem(0)
         }
