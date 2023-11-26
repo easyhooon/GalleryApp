@@ -83,7 +83,7 @@ fun DetailScreen(
                             byteArray,
                         )
                     }
-                }
+                },
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_save),
