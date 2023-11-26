@@ -6,7 +6,8 @@
 [![minSdkVersion](https://img.shields.io/badge/minSdkVersion-24-red)](https://developer.android.com/distribute/best-practices/develop/target-sdk)
 [![targetSdkVersion](https://img.shields.io/badge/targetSdkVersion-34-orange)](https://developer.android.com/distribute/best-practices/develop/target-sdk)
 <br/>
-![GalleryApp 그래픽 이미지](https://github.com/easyhooon/daangn-assignment/assets/51016231/3c621904-d33e-42b4-9b9b-546e9946d537)
+
+![graphic image](https://github.com/easyhooon/daangn-assignment/assets/51016231/f55bc26d-3208-42db-bd4c-0df3e863bccc)
 
 ## GalleryApp
 
