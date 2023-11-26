@@ -18,6 +18,7 @@ android {
 dependencies {
     implementations(
         projects.domain,
+        libs.kotlinx.collections.immutable,
         libs.android.material,
         libs.androidx.activity.ktx,
         libs.androidx.appcompat,
