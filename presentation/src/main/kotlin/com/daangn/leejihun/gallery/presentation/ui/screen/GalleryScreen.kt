@@ -247,7 +247,7 @@ fun GalleryScreen(
                                     item(
                                         span = {
                                             GridItemSpan(maxLineSpan)
-                                        }
+                                        },
                                     ) {
                                         LoadStateFooter(
                                             loadState = photoList.loadState.append,

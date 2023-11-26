@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -68,4 +69,20 @@ fun PhotoCard(
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PhotoCardPreview() {
+    PhotoCard(
+        photo = Photo(
+            id = "44",
+            author = "Christopher Sardegna",
+            width = 4272,
+            height = 2848,
+            url = "https://unsplash.com/photos/R1E6x8U83Ho",
+            downloadUrl = "https://picsum.photos/id/44/4272/2848"
+        ),
+        onPhotoClick = {}
+    )
 }

@@ -9,8 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.daangn.leejihun.gallery.presentation.R
-import com.daangn.leejihun.gallery.presentation.ui.theme.Title
+import com.daangn.leejihun.gallery.presentation.ui.theme.TextLMedium
 
 @Composable
 fun EmptyScreen(
@@ -26,8 +27,14 @@ fun EmptyScreen(
         ) {
             Text(
                 text = stringResource(id = R.string.empty_message),
-                style = Title,
+                style = TextLMedium,
             )
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun EmptyScreenLightPreview() {
+    EmptyScreen()
 }

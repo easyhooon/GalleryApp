@@ -79,6 +79,7 @@ androidx-compose-material3 = { group = "androidx.compose.material3", name = "mat
 androidx-compose-material3-windowSizeClass = { group = "androidx.compose.material3", name = "material3-window-size-class" }
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
 androidx-compose-runtime-tracing = { group = "androidx.compose.runtime", name = "runtime-tracing", version.ref = "androidx-compose-runtime-tracing" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-ui-util = { group = "androidx.compose.ui", name = "ui-util" }
 androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidx-compose-navigation" }
@@ -96,8 +97,8 @@ desugar-jdk = { group = "com.android.tools", name = "desugar_jdk_libs", version.
 detekt-plugin-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "kotlin-detekt" }
 javax-inject = { group = "javax.inject", name = "javax.inject", version = "1" }
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
-zoomable = { group = "net.engawapg.lib", name = "zoomable", version.ref = "zoomable"}
-lazy-column-scrollbar = { group = "com.github.nanihadesuka", name = "LazyColumnScrollbar", version.ref = "lazy-column-scrollbar"}
+zoomable = { group = "net.engawapg.lib", name = "zoomable", version.ref = "zoomable" }
+lazy-column-scrollbar = { group = "com.github.nanihadesuka", name = "LazyColumnScrollbar", version.ref = "lazy-column-scrollbar" }
 
 [plugins]
 
@@ -139,6 +140,7 @@ androidx-compose = [
     "androidx-compose-material3",
     "androidx-compose-runtime",
     "androidx-compose-runtime-tracing",
+    "androidx-compose-ui-tooling",
     "androidx-compose-ui-tooling-preview",
     "androidx-compose-ui-util",
     "androidx-compose-navigation",

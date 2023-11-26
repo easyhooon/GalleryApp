@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import com.daangn.leejihun.gallery.presentation.ui.screen.EndOfResultScreen
@@ -30,4 +31,13 @@ fun LoadStateFooter(
             else -> EndOfResultScreen()
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun LoadStateFooterPreview() {
+    LoadStateFooter(
+        loadState = LoadState.Loading,
+        onRetryClick = {}
+    )
 }
