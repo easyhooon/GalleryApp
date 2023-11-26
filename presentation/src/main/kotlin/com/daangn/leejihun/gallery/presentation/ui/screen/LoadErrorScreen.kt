@@ -40,7 +40,10 @@ fun LoadErrorScreen(
             Button(
                 onClick = onRetryClick,
             ) {
-                Text(text = stringResource(id = R.string.retry))
+                Text(
+                    text = stringResource(id = R.string.retry),
+                    style = TextMRegular,
+                )
             }
         }
     }
