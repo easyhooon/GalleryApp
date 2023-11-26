@@ -11,5 +11,6 @@
     <string name="search">검색</string>
     <string name="empty_message">검색 결과가 존재하지 않습니다</string>
     <string name="end_message">모든 사진을 조회 하였습니다</string>
+    <string name="dropdown">Dropdown Image</string>
 
 </resources>

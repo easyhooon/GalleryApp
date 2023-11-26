@@ -70,6 +70,7 @@ fun GalleryScreen(
                     TopBarTitle(
                         loadState = photoList.loadState.refresh,
                         toggleSearchVisibility = toggleSearchVisibility,
+                        isSearchVisible = uiState.isSearchVisible,
                     )
                 },
             )
