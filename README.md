@@ -102,7 +102,8 @@ Based on [Google App Architecture](https://developer.android.com/topic/architect
 ├── presentation
 │   ├── mapper
 │   ├── model
-│   └── ui
+│   ├── ui
+│   └── util
 ├── gradle
 │   └── libs.versions.toml
 └── report
