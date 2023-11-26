@@ -79,16 +79,10 @@ fun GalleryApp(
                         uiState = uiState,
                         searchQuery = viewModel.searchQuery,
                         updateSearchQuery = viewModel::updateSearchQuery,
-                        onPhotoClick = { photo ->
-                            viewModel.onNavigateDetail(photo = photo)
-                        },
+                        onPhotoClick = viewModel::onNavigateDetail,
                         toggleSearchVisibility = viewModel::toggleSearchVisibility,
-                        getCurrentPhotoListSnapshot = { photoListSnapshot ->
-                            viewModel.getCurrentPhotoListSnapshot(photoListSnapshot)
-                        },
-                        onSearchQuery = { query ->
-                            viewModel.onSearchQuery(query)
-                        }
+                        getCurrentPhotoListSnapshot = viewModel::getCurrentPhotoListSnapshot,
+                        onSearchQuery = viewModel::onSearchQuery,
                     )
                 }
 
@@ -116,15 +110,8 @@ fun GalleryApp(
                         DetailScreen(
                             uiState = uiState,
                             photo = photo,
-                            onNavigateBack = {
-                                viewModel.onNavigateBack()
-                            },
-                            saveImageFile = { fileName, byteArray ->
-                                viewModel.saveImageFile(
-                                    fileName = fileName,
-                                    byteArray = byteArray,
-                                )
-                            },
+                            onNavigateBack = viewModel::onNavigateBack,
+                            saveImageFile = viewModel::saveImageFile,
                         )
                     }
                 }
