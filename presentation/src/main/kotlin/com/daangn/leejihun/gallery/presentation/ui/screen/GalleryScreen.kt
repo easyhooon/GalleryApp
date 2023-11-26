@@ -174,28 +174,32 @@ fun GalleryScreen(
                         thumbSelectedColor = colorScheme.primary,
                         thickness = 8.dp,
                     ) {
-                        LazyVerticalGrid(
-                            columns = GridCells.Adaptive(minSize = min(screenWidth, 160.dp)),
-                            modifier = modifier.fillMaxSize(),
-                            state = lazyGridState,
-                            contentPadding = PaddingValues(4.dp),
-                            verticalArrangement = Arrangement.spacedBy(4.dp),
-                            horizontalArrangement = Arrangement.spacedBy(4.dp),
-                        ) {
-                            items(
-                                items = uiState.filteredPhotoList,
-                                key = { it.id },
-                            ) { photo ->
-                                PhotoCard(
-                                    photo = photo,
-                                    onPhotoClick = onPhotoClick,
-                                    modifier = Modifier.animateItemPlacement(
-                                        animationSpec = tween(
-                                            durationMillis = 500,
-                                            easing = LinearOutSlowInEasing,
+                        if (uiState.filteredPhotoList.isEmpty()) {
+                            EmptyScreen()
+                        } else {
+                            LazyVerticalGrid(
+                                columns = GridCells.Adaptive(minSize = min(screenWidth, 160.dp)),
+                                modifier = modifier.fillMaxSize(),
+                                state = lazyGridState,
+                                contentPadding = PaddingValues(4.dp),
+                                verticalArrangement = Arrangement.spacedBy(4.dp),
+                                horizontalArrangement = Arrangement.spacedBy(4.dp),
+                            ) {
+                                items(
+                                    items = uiState.filteredPhotoList,
+                                    key = { it.id },
+                                ) { photo ->
+                                    PhotoCard(
+                                        photo = photo,
+                                        onPhotoClick = onPhotoClick,
+                                        modifier = Modifier.animateItemPlacement(
+                                            animationSpec = tween(
+                                                durationMillis = 500,
+                                                easing = LinearOutSlowInEasing,
+                                            ),
                                         ),
-                                    ),
-                                )
+                                    )
+                                }
                             }
                         }
                     }

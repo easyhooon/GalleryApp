@@ -9,5 +9,6 @@
     <string name="author_search">작가(author) 검색</string>
     <string name="search_icon">Search Icon</string>
     <string name="search">검색</string>
+    <string name="empty_message">검색 결과가 존재하지 않습니다</string>
 
 </resources>
