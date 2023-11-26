@@ -39,7 +39,7 @@ GalleryApp
   - StartUp
   - Splash
 
-- Kotlin Libraries (Coroutine, Serialization)
+- Kotlin Libraries (Coroutine, Serialization, Immutable)
 - Compose
   - Material3
   - Navigation
