@@ -16,6 +16,9 @@ import com.daangn.leejihun.gallery.domain.usecase.GetPhotoListUseCase
 import com.daangn.leejihun.gallery.presentation.mapper.toUiModel
 import com.daangn.leejihun.gallery.presentation.model.Photo
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -30,8 +33,8 @@ import javax.inject.Inject
 
 data class GalleryUiState(
     val isSearchVisible: Boolean = false,
-    val currentPhotoListSnapshot: List<Photo> = listOf(),
-    val filteredPhotoList: List<Photo> = listOf(),
+    val currentPhotoListSnapshot: ImmutableList<Photo> = persistentListOf(),
+    val filteredPhotoList: ImmutableList<Photo> = persistentListOf(),
     val isLoading: Boolean = false,
     val error: Throwable? = null,
 )
@@ -79,8 +82,8 @@ class GalleryViewModel @Inject constructor(
     fun getCurrentPhotoListSnapshot(photoListSnapshot: ItemSnapshotList<Photo>) {
         _uiState.update {
             it.copy(
-                currentPhotoListSnapshot = photoListSnapshot.items,
-                filteredPhotoList = photoListSnapshot.items,
+                currentPhotoListSnapshot = photoListSnapshot.items.toImmutableList(),
+                filteredPhotoList = photoListSnapshot.items.toImmutableList(),
             )
         }
     }
@@ -93,9 +96,11 @@ class GalleryViewModel @Inject constructor(
         if (searchQuery.text.isNotEmpty()) {
             _uiState.update {
                 it.copy(
-                    filteredPhotoList = _uiState.value.currentPhotoListSnapshot.filter { photo ->
-                        photo.author.lowercase(Locale.ROOT).contains(searchQuery.text.lowercase(Locale.ROOT))
-                    },
+                    filteredPhotoList = _uiState.value.currentPhotoListSnapshot
+                        .filter { photo ->
+                            photo.author.lowercase(Locale.ROOT).contains(searchQuery.text.lowercase(Locale.ROOT))
+                        }
+                        .toImmutableList(),
                 )
             }
         } else {
