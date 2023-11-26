@@ -102,17 +102,18 @@ fun GalleryScreen(
                             style = H5,
                         )
                         Spacer(modifier = Modifier.weight(1f))
-                        IconButton(
-                            onClick = toggleSearchVisibility,
-                        ) {
-                            Icon(
-                                imageVector = Icons.Filled.Search,
-                                contentDescription = stringResource(R.string.search_icon),
-                                modifier = Modifier.size(32.dp),
-                            )
+                        if (!isLoading) {
+                            IconButton(
+                                onClick = toggleSearchVisibility,
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Filled.Search,
+                                    contentDescription = stringResource(R.string.search_icon),
+                                    modifier = Modifier.size(32.dp),
+                                )
+                            }
                         }
                     }
-
                 },
             )
         },
