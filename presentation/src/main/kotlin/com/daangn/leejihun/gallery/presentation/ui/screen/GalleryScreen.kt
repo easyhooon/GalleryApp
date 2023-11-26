@@ -38,6 +38,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
@@ -181,7 +182,13 @@ fun GalleryScreen(
                         } else {
                             LazyVerticalGrid(
                                 columns = GridCells.Adaptive(minSize = min(screenWidth, 160.dp)),
-                                modifier = modifier.fillMaxSize(),
+                                modifier = modifier
+                                    .fillMaxSize()
+                                    .onGloballyPositioned {
+                                        if (lazyGridState.isScrollInProgress) {
+                                            keyboardController?.hide()
+                                        }
+                                    },
                                 state = lazyGridState,
                                 contentPadding = PaddingValues(4.dp),
                                 verticalArrangement = Arrangement.spacedBy(4.dp),
