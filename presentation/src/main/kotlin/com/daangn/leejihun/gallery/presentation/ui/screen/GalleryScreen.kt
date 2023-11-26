@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
@@ -52,6 +53,7 @@ import androidx.paging.compose.itemKey
 import com.daangn.leejihun.gallery.presentation.GalleryUiState
 import com.daangn.leejihun.gallery.presentation.R
 import com.daangn.leejihun.gallery.presentation.model.Photo
+import com.daangn.leejihun.gallery.presentation.ui.component.LoadStateFooter
 import com.daangn.leejihun.gallery.presentation.ui.component.PhotoCard
 import com.daangn.leejihun.gallery.presentation.ui.theme.Gray900
 import com.daangn.leejihun.gallery.presentation.ui.theme.H5
@@ -233,6 +235,17 @@ fun GalleryScreen(
                                                 onPhotoClick = onPhotoClick,
                                             )
                                         }
+                                    }
+
+                                    item(
+                                        span = {
+                                            GridItemSpan(maxLineSpan)
+                                        }
+                                    ) {
+                                        LoadStateFooter(
+                                            loadState = photoList.loadState.append,
+                                            onRetryClick = { photoList.retry() },
+                                        )
                                     }
                                 }
                             }
