@@ -6,8 +6,17 @@
 [![minSdkVersion](https://img.shields.io/badge/minSdkVersion-24-red)](https://developer.android.com/distribute/best-practices/develop/target-sdk)
 [![targetSdkVersion](https://img.shields.io/badge/targetSdkVersion-34-orange)](https://developer.android.com/distribute/best-practices/develop/target-sdk)
 <br/>
+![GalleryApp 그래픽 이미지](https://github.com/easyhooon/daangn-assignment/assets/51016231/3c621904-d33e-42b4-9b9b-546e9946d537)
 
-GalleryApp
+## GalleryApp
+
+|Light Mode 1|Light Mode 2|
+|:-----:|:-----:|
+|<img width="240" src="https://github.com/easyhooon/daangn-assignment/assets/51016231/dfeb422c-5b83-4710-81aa-3f9ee6939ead">|<img width="240" src="https://github.com/easyhooon/daangn-assignment/assets/51016231/97b3afc6-2952-410b-96ea-b0885d66431d">|
+
+|Dark Mode 1|Dark Mode 2|
+|:-----:|:-----:|
+|<img width="240" src="https://github.com/easyhooon/daangn-assignment/assets/51016231/210d9da8-f312-43e3-a844-577a401f1feb">|<img width="240" src="https://github.com/easyhooon/daangn-assignment/assets/51016231/f27f7282-36bf-4fde-b46e-f359533eff60">|
 
 ## Features
 
