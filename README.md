@@ -22,11 +22,11 @@
 
 |피드 화면|Author로 사진 검색 기능|
 |:-----:|:-----:|
-|<img width="240" src="https://github.com/easyhooon/daangn-assignment/assets/51016231/5e7e93fe-7928-4441-b236-fe8d82a01130">|<img width="240" src="https://github.com/easyhooon/daangn-assignment/assets/51016231/d2ab33d6-ba15-4739-baea-1b38d8de4b26">|
+|<img width="240" src="https://github.com/easyhooon/daangn-assignment/assets/51016231/ae4144e6-59a1-41e3-988d-5a690d5648d4">|<img width="240" src="https://github.com/easyhooon/daangn-assignment/assets/51016231/d2ab33d6-ba15-4739-baea-1b38d8de4b26">|
 
 |상세 화면|Zoom 기능|사진 저장 기능|
 |:-----:|:-----:|:-----:|
-|<img width="240" src="https://github.com/easyhooon/daangn-assignment/assets/51016231/ae4144e6-59a1-41e3-988d-5a690d5648d4">|<img width="240" src="https://github.com/easyhooon/daangn-assignment/assets/51016231/e38cabc4-eeaa-4b93-9663-337ca60ed596">|<img width="240" src="https://github.com/easyhooon/daangn-assignment/assets/51016231/3fbf14d8-fea5-4002-8d3c-2163a36a1119">
+|<img width="240" src="https://github.com/easyhooon/daangn-assignment/assets/51016231/02f77c7c-4497-4e40-b39a-975cc73a9205">|<img width="240" src="https://github.com/easyhooon/daangn-assignment/assets/51016231/e38cabc4-eeaa-4b93-9663-337ca60ed596">|<img width="240" src="https://github.com/easyhooon/daangn-assignment/assets/51016231/3fbf14d8-fea5-4002-8d3c-2163a36a1119">
 
 ## Development
 
