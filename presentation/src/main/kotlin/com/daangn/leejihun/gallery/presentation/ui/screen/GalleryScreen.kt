@@ -16,22 +16,22 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.outlined.Cancel
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -56,6 +56,7 @@ import com.daangn.leejihun.gallery.presentation.ui.component.PhotoCard
 import com.daangn.leejihun.gallery.presentation.ui.theme.Gray900
 import com.daangn.leejihun.gallery.presentation.ui.theme.H5
 import com.daangn.leejihun.gallery.presentation.ui.theme.TextLMedium
+import com.daangn.leejihun.gallery.presentation.ui.theme.Title
 import my.nanihadesuka.compose.LazyGridVerticalScrollbar
 
 @Composable
@@ -67,6 +68,7 @@ fun GalleryScreen(
     onPhotoClick: (Photo) -> Unit,
     toggleSearchVisibility: () -> Unit,
     getCurrentPhotoListSnapshot: (ItemSnapshotList<Photo>) -> Unit,
+    onSearchQuery: (TextFieldValue) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val screenWidth = LocalConfiguration.current.screenWidthDp.dp
@@ -85,6 +87,7 @@ fun GalleryScreen(
     LaunchedEffect(key1 = searchQuery.text) {
         if (uiState.isSearchVisible && searchQuery.text == "") {
             keyboardController?.hide()
+            onSearchQuery(TextFieldValue(""))
             lazyGridState.animateScrollToItem(0)
         }
     }
@@ -103,13 +106,13 @@ fun GalleryScreen(
                         )
                         Spacer(modifier = Modifier.weight(1f))
                         if (!isLoading) {
-                            IconButton(
+                            TextButton(
                                 onClick = toggleSearchVisibility,
                             ) {
-                                Icon(
-                                    imageVector = Icons.Filled.Search,
-                                    contentDescription = stringResource(R.string.search_icon),
-                                    modifier = Modifier.size(32.dp),
+                                Text(
+                                    text = stringResource(id = R.string.search),
+                                    color = colorScheme.secondary,
+                                    style = Title,
                                 )
                             }
                         }
@@ -148,7 +151,13 @@ fun GalleryScreen(
                             }
                         },
                         keyboardOptions = KeyboardOptions(
-                            imeAction = ImeAction.Done,
+                            imeAction = ImeAction.Search,
+                        ),
+                        keyboardActions = KeyboardActions(
+                            onSearch = {
+                                onSearchQuery(searchQuery)
+                                keyboardController?.hide()
+                            },
                         ),
                         placeholder = {
                             Text(

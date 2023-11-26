@@ -87,6 +87,9 @@ class GalleryViewModel @Inject constructor(
 
     fun updateSearchQuery(newSearchQuery: TextFieldValue) {
         searchQuery = newSearchQuery
+    }
+
+    fun onSearchQuery(searchQuery: TextFieldValue) {
         if (searchQuery.text.isNotEmpty()) {
             _uiState.update {
                 it.copy(

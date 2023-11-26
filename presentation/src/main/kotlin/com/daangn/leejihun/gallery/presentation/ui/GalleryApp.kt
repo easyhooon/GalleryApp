@@ -86,6 +86,9 @@ fun GalleryApp(
                         getCurrentPhotoListSnapshot = { photoListSnapshot ->
                             viewModel.getCurrentPhotoListSnapshot(photoListSnapshot)
                         },
+                        onSearchQuery = { query ->
+                            viewModel.onSearchQuery(query)
+                        }
                     )
                 }
 
