@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBackIos
+import androidx.compose.material.icons.outlined.Image
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -26,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -99,20 +101,28 @@ fun DetailScreen(
                 .fillMaxSize()
                 .padding(innerPadding),
         ) {
-            AsyncImage(
-                model = ImageRequest.Builder(context)
-                    .data(photo.downloadUrl)
-                    .build(),
-                contentDescription = stringResource(id = R.string.photo_image),
-                modifier = modifier
-                    .fillMaxWidth()
-                    .align(Alignment.Center)
-                    .zoomable(rememberZoomState()),
-                contentScale = ContentScale.Fit,
-            )
+            if (LocalInspectionMode.current) {
+                Icon(
+                    imageVector = Icons.Outlined.Image,
+                    contentDescription = stringResource(R.string.image_icon),
+                    modifier = Modifier.fillMaxSize(),
+                )
+            } else {
+                AsyncImage(
+                    model = ImageRequest.Builder(context)
+                        .data(photo.downloadUrl)
+                        .build(),
+                    contentDescription = stringResource(id = R.string.photo_image),
+                    modifier = modifier
+                        .fillMaxWidth()
+                        .align(Alignment.Center)
+                        .zoomable(rememberZoomState()),
+                    contentScale = ContentScale.Fit,
+                )
 
-            if (uiState.isLoading) {
-                LoadingScreen()
+                if (uiState.isLoading) {
+                    LoadingScreen()
+                }
             }
         }
     }
@@ -138,12 +148,12 @@ fun DetailScreenPreview() {
     DetailScreen(
         uiState = DetailUiState(),
         photo = Photo(
-            id = "44",
+            id = "1",
             author = "Christopher Sardegna",
-            width = 4272,
-            height = 2848,
-            url = "https://unsplash.com/photos/R1E6x8U83Ho",
-            downloadUrl = "https://picsum.photos/id/44/4272/2848",
+            width = 160,
+            height = 160,
+            url = "",
+            downloadUrl = "",
         ),
         onNavigateBack = {},
         saveImageFile = { _, _ -> },
@@ -156,12 +166,12 @@ fun DetailScreenPreview_DarkMode() {
     DetailScreen(
         uiState = DetailUiState(),
         photo = Photo(
-            id = "44",
-            author = "Christopher Sardegna",
-            width = 4272,
-            height = 2848,
-            url = "https://unsplash.com/photos/R1E6x8U83Ho",
-            downloadUrl = "https://picsum.photos/id/44/4272/2848",
+            id = "1",
+            author = "",
+            width = 160,
+            height = 160,
+            url = "",
+            downloadUrl = "",
         ),
         onNavigateBack = {},
         saveImageFile = { _, _ -> },

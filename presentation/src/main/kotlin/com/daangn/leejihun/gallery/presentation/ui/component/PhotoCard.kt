@@ -54,7 +54,7 @@ fun PhotoCard(
             if (LocalInspectionMode.current) {
                 Icon(
                     imageVector = Icons.Outlined.Image,
-                    contentDescription = "Image Icon",
+                    contentDescription = stringResource(id = R.string.image_icon),
                     modifier = Modifier.fillMaxSize(),
                 )
             } else {
