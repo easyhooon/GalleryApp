@@ -1,5 +1,6 @@
 package com.daangn.leejihun.gallery.presentation.ui.screen
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -50,6 +51,14 @@ fun ErrorScreen(
 @Composable
 fun ErrorScreenPreview() {
     ErrorScreen(
-        onClickRetryButton = {}
+        onClickRetryButton = {},
+    )
+}
+
+@Preview(uiMode = UI_MODE_NIGHT_YES)
+@Composable
+fun ErrorScreenPreview_DarkMode() {
+    ErrorScreen(
+        onClickRetryButton = {},
     )
 }

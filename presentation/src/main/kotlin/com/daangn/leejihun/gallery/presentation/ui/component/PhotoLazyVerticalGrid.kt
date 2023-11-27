@@ -69,3 +69,23 @@ fun PhotoLazyVerticalGrid(
         }
     }
 }
+
+// @Preview(showBackground = true)
+// @Composable
+// fun PhotoLazyVerticalGridPreview() {
+//     PhotoLazyVerticalGrid(
+//         photoList = LazyPagingItems<Photo>,
+//         lazyGridState = rememberLazyGridState(),
+//         onPhotoClick = {},
+//     )
+// }
+
+// @Preview(uiMode = UI_MODE_NIGHT_YES)
+// @Composable
+// fun PhotoLazyVerticalGridPreview_DarkMode() {
+//     PhotoLazyVerticalGrid(
+//         photoList = LazyPagingItems<Photo>,
+//         lazyGridState = rememberLazyGridState(),
+//         onPhotoClick = {},
+//     )
+// }

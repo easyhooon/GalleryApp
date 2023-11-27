@@ -1,5 +1,6 @@
 package com.daangn.leejihun.gallery.presentation.ui.component
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -73,9 +74,19 @@ fun TopBarTitle(
     }
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
 fun TopBarTitlePreview() {
+    TopBarTitle(
+        loadState = LoadState.Loading,
+        toggleSearchVisibility = {},
+        isSearchVisible = true,
+    )
+}
+
+@Preview(uiMode = UI_MODE_NIGHT_YES)
+@Composable
+fun TopBarTitlePreview_DarkMode() {
     TopBarTitle(
         loadState = LoadState.Loading,
         toggleSearchVisibility = {},

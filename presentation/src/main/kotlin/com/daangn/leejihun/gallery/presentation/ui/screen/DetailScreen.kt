@@ -3,6 +3,7 @@
 package com.daangn.leejihun.gallery.presentation.ui.screen
 
 import android.content.Context
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import androidx.compose.foundation.Image
@@ -27,6 +28,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import coil.ImageLoader
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -128,4 +130,40 @@ suspend fun createByteArrayFromUrl(context: Context, photo: Photo): ByteArray {
     val stream = ByteArrayOutputStream()
     bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
     return stream.toByteArray()
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DetailScreenPreview() {
+    DetailScreen(
+        uiState = DetailUiState(),
+        photo = Photo(
+            id = "44",
+            author = "Christopher Sardegna",
+            width = 4272,
+            height = 2848,
+            url = "https://unsplash.com/photos/R1E6x8U83Ho",
+            downloadUrl = "https://picsum.photos/id/44/4272/2848",
+        ),
+        onNavigateBack = {},
+        saveImageFile = { _, _ -> },
+    )
+}
+
+@Preview(uiMode = UI_MODE_NIGHT_YES)
+@Composable
+fun DetailScreenPreview_DarkMode() {
+    DetailScreen(
+        uiState = DetailUiState(),
+        photo = Photo(
+            id = "44",
+            author = "Christopher Sardegna",
+            width = 4272,
+            height = 2848,
+            url = "https://unsplash.com/photos/R1E6x8U83Ho",
+            downloadUrl = "https://picsum.photos/id/44/4272/2848",
+        ),
+        onNavigateBack = {},
+        saveImageFile = { _, _ -> },
+    )
 }

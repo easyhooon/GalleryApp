@@ -2,6 +2,7 @@
 
 package com.daangn.leejihun.gallery.presentation.ui.component
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -65,7 +66,7 @@ fun FilteredPhotoLazyVerticalGrid(
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun FilteredPhotoLazyVerticalGridPreview() {
     FilteredPhotoLazyVerticalGrid(
@@ -76,7 +77,7 @@ fun FilteredPhotoLazyVerticalGridPreview() {
                 width = 4272,
                 height = 2848,
                 url = "https://unsplash.com/photos/R1E6x8U83Ho",
-                downloadUrl = "https://picsum.photos/id/44/4272/2848"
+                downloadUrl = "https://picsum.photos/id/44/4272/2848",
             ),
             Photo(
                 id = "45",
@@ -84,7 +85,7 @@ fun FilteredPhotoLazyVerticalGridPreview() {
                 width = 4272,
                 height = 2848,
                 url = "https://unsplash.com/photos/R1E6x8U83Ho",
-                downloadUrl = "https://picsum.photos/id/44/4272/2848"
+                downloadUrl = "https://picsum.photos/id/44/4272/2848",
             ),
             Photo(
                 id = "46",
@@ -92,7 +93,7 @@ fun FilteredPhotoLazyVerticalGridPreview() {
                 width = 4272,
                 height = 2848,
                 url = "https://unsplash.com/photos/R1E6x8U83Ho",
-                downloadUrl = "https://picsum.photos/id/44/4272/2848"
+                downloadUrl = "https://picsum.photos/id/44/4272/2848",
             ),
             Photo(
                 id = "47",
@@ -100,7 +101,7 @@ fun FilteredPhotoLazyVerticalGridPreview() {
                 width = 4272,
                 height = 2848,
                 url = "https://unsplash.com/photos/R1E6x8U83Ho",
-                downloadUrl = "https://picsum.photos/id/44/4272/2848"
+                downloadUrl = "https://picsum.photos/id/44/4272/2848",
             ),
             Photo(
                 id = "48",
@@ -108,7 +109,7 @@ fun FilteredPhotoLazyVerticalGridPreview() {
                 width = 4272,
                 height = 2848,
                 url = "https://unsplash.com/photos/R1E6x8U83Ho",
-                downloadUrl = "https://picsum.photos/id/44/4272/2848"
+                downloadUrl = "https://picsum.photos/id/44/4272/2848",
             ),
             Photo(
                 id = "49",
@@ -116,7 +117,7 @@ fun FilteredPhotoLazyVerticalGridPreview() {
                 width = 4272,
                 height = 2848,
                 url = "https://unsplash.com/photos/R1E6x8U83Ho",
-                downloadUrl = "https://picsum.photos/id/44/4272/2848"
+                downloadUrl = "https://picsum.photos/id/44/4272/2848",
             ),
             Photo(
                 id = "50",
@@ -124,7 +125,7 @@ fun FilteredPhotoLazyVerticalGridPreview() {
                 width = 4272,
                 height = 2848,
                 url = "https://unsplash.com/photos/R1E6x8U83Ho",
-                downloadUrl = "https://picsum.photos/id/44/4272/2848"
+                downloadUrl = "https://picsum.photos/id/44/4272/2848",
             ),
             Photo(
                 id = "51",
@@ -132,10 +133,117 @@ fun FilteredPhotoLazyVerticalGridPreview() {
                 width = 4272,
                 height = 2848,
                 url = "https://unsplash.com/photos/R1E6x8U83Ho",
-                downloadUrl = "https://picsum.photos/id/44/4272/2848"
+                downloadUrl = "https://picsum.photos/id/44/4272/2848",
+            ),
+            Photo(
+                id = "52",
+                author = "Christopher Sardegna",
+                width = 4272,
+                height = 2848,
+                url = "https://unsplash.com/photos/R1E6x8U83Ho",
+                downloadUrl = "https://picsum.photos/id/44/4272/2848",
+            ),
+            Photo(
+                id = "53",
+                author = "Christopher Sardegna",
+                width = 4272,
+                height = 2848,
+                url = "https://unsplash.com/photos/R1E6x8U83Ho",
+                downloadUrl = "https://picsum.photos/id/44/4272/2848",
             ),
         ),
         lazyGridState = rememberLazyGridState(),
-        onPhotoClick = {}
+        onPhotoClick = {},
+    )
+}
+
+@Preview(uiMode = UI_MODE_NIGHT_YES)
+@Composable
+fun FilteredPhotoLazyVerticalGridPreview_DarkMode() {
+    FilteredPhotoLazyVerticalGrid(
+        filteredPhotoList = listOf(
+            Photo(
+                id = "44",
+                author = "Christopher Sardegna",
+                width = 4272,
+                height = 2848,
+                url = "https://unsplash.com/photos/R1E6x8U83Ho",
+                downloadUrl = "https://picsum.photos/id/44/4272/2848",
+            ),
+            Photo(
+                id = "45",
+                author = "Christopher Sardegna",
+                width = 4272,
+                height = 2848,
+                url = "https://unsplash.com/photos/R1E6x8U83Ho",
+                downloadUrl = "https://picsum.photos/id/44/4272/2848",
+            ),
+            Photo(
+                id = "46",
+                author = "Christopher Sardegna",
+                width = 4272,
+                height = 2848,
+                url = "https://unsplash.com/photos/R1E6x8U83Ho",
+                downloadUrl = "https://picsum.photos/id/44/4272/2848",
+            ),
+            Photo(
+                id = "47",
+                author = "Christopher Sardegna",
+                width = 4272,
+                height = 2848,
+                url = "https://unsplash.com/photos/R1E6x8U83Ho",
+                downloadUrl = "https://picsum.photos/id/44/4272/2848",
+            ),
+            Photo(
+                id = "48",
+                author = "Christopher Sardegna",
+                width = 4272,
+                height = 2848,
+                url = "https://unsplash.com/photos/R1E6x8U83Ho",
+                downloadUrl = "https://picsum.photos/id/44/4272/2848",
+            ),
+            Photo(
+                id = "49",
+                author = "Christopher Sardegna",
+                width = 4272,
+                height = 2848,
+                url = "https://unsplash.com/photos/R1E6x8U83Ho",
+                downloadUrl = "https://picsum.photos/id/44/4272/2848",
+            ),
+            Photo(
+                id = "50",
+                author = "Christopher Sardegna",
+                width = 4272,
+                height = 2848,
+                url = "https://unsplash.com/photos/R1E6x8U83Ho",
+                downloadUrl = "https://picsum.photos/id/44/4272/2848",
+            ),
+            Photo(
+                id = "51",
+                author = "Christopher Sardegna",
+                width = 4272,
+                height = 2848,
+                url = "https://unsplash.com/photos/R1E6x8U83Ho",
+                downloadUrl = "https://picsum.photos/id/44/4272/2848",
+            ),
+            Photo(
+                id = "52",
+                author = "Christopher Sardegna",
+                width = 4272,
+                height = 2848,
+                url = "https://unsplash.com/photos/R1E6x8U83Ho",
+                downloadUrl = "https://picsum.photos/id/44/4272/2848",
+            ),
+            Photo(
+                id = "53",
+                author = "Christopher Sardegna",
+                width = 4272,
+                height = 2848,
+                url = "https://unsplash.com/photos/R1E6x8U83Ho",
+                downloadUrl = "https://picsum.photos/id/44/4272/2848",
+            ),
+        ),
+        lazyGridState = rememberLazyGridState(),
+        onPhotoClick = {},
     )
 }

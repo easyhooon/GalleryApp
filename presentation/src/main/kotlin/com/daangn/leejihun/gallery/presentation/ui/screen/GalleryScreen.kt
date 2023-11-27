@@ -24,9 +24,9 @@ import androidx.paging.compose.LazyPagingItems
 import com.daangn.leejihun.gallery.presentation.GalleryUiState
 import com.daangn.leejihun.gallery.presentation.model.Photo
 import com.daangn.leejihun.gallery.presentation.ui.component.FilteredPhotoLazyVerticalGrid
-import com.daangn.leejihun.gallery.presentation.ui.component.TopBarTitle
 import com.daangn.leejihun.gallery.presentation.ui.component.PhotoLazyVerticalGrid
 import com.daangn.leejihun.gallery.presentation.ui.component.SearchTextField
+import com.daangn.leejihun.gallery.presentation.ui.component.TopBarTitle
 import com.daangn.leejihun.gallery.presentation.ui.theme.Gray900
 import my.nanihadesuka.compose.LazyGridVerticalScrollbar
 
@@ -121,3 +121,33 @@ fun GalleryScreen(
         }
     }
 }
+
+// @Preview(showBackground = true)
+// @Composable
+// fun GalleryScreenPreview() {
+//     GalleryScreen(
+//         photoList = LazyPagingItems<Photo>,
+//         uiState = GalleryUiState(),
+//         searchQuery = TextFieldValue(""),
+//         updateSearchQuery = {},
+//         onPhotoClick = {},
+//         toggleSearchVisibility = {},
+//         getCurrentPhotoListSnapshot = {},
+//         onSearchQuery = {},
+//     )
+// }
+
+// @Preview(uiMode = UI_MODE_NIGHT_YES)
+// @Composable
+// fun GalleryScreenPreview_DarkMode() {
+//     GalleryScreen(
+//         photoList = LazyPagingItems<Photo>,
+//         uiState = GalleryUiState(),
+//         searchQuery = TextFieldValue(""),
+//         updateSearchQuery = {},
+//         onPhotoClick = {},
+//         toggleSearchVisibility = {},
+//         getCurrentPhotoListSnapshot = {},
+//         onSearchQuery = {},
+//     )
+// }

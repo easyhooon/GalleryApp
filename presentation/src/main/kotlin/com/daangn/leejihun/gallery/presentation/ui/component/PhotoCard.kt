@@ -1,5 +1,6 @@
 package com.daangn.leejihun.gallery.presentation.ui.component
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -71,7 +72,7 @@ fun PhotoCard(
     }
 }
 
-@Preview(showBackground = true)
+@Preview()
 @Composable
 fun PhotoCardPreview() {
     PhotoCard(
@@ -81,8 +82,24 @@ fun PhotoCardPreview() {
             width = 4272,
             height = 2848,
             url = "https://unsplash.com/photos/R1E6x8U83Ho",
-            downloadUrl = "https://picsum.photos/id/44/4272/2848"
+            downloadUrl = "https://picsum.photos/id/44/4272/2848",
         ),
-        onPhotoClick = {}
+        onPhotoClick = {},
+    )
+}
+
+@Preview(uiMode = UI_MODE_NIGHT_YES)
+@Composable
+fun PhotoCardPreview_DarkMode() {
+    PhotoCard(
+        photo = Photo(
+            id = "44",
+            author = "Christopher Sardegna",
+            width = 4272,
+            height = 2848,
+            url = "https://unsplash.com/photos/R1E6x8U83Ho",
+            downloadUrl = "https://picsum.photos/id/44/4272/2848",
+        ),
+        onPhotoClick = {},
     )
 }

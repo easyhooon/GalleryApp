@@ -1,5 +1,6 @@
 package com.daangn.leejihun.gallery.presentation.ui.screen
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -45,5 +46,11 @@ fun EmptyScreen(
 @Preview(showBackground = true)
 @Composable
 fun EmptyScreenLightPreview() {
+    EmptyScreen()
+}
+
+@Preview(uiMode = UI_MODE_NIGHT_YES)
+@Composable
+fun EmptyScreenLightPreview_DarkMode() {
     EmptyScreen()
 }

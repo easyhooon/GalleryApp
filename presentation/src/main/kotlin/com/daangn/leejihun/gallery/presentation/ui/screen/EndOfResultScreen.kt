@@ -1,5 +1,6 @@
 package com.daangn.leejihun.gallery.presentation.ui.screen
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -33,7 +34,6 @@ fun EndOfResultScreen(
             Text(
                 text = stringResource(id = R.string.end_message),
                 style = TextMRegular,
-                modifier = Modifier.align(Alignment.CenterVertically),
             )
         }
     }
@@ -42,5 +42,11 @@ fun EndOfResultScreen(
 @Preview(showBackground = true)
 @Composable
 fun EndOfResultScreenPreview() {
+    EndOfResultScreen()
+}
+
+@Preview(uiMode = UI_MODE_NIGHT_YES)
+@Composable
+fun EndOfResultScreenPreview_DarkMode() {
     EndOfResultScreen()
 }

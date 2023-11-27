@@ -1,5 +1,6 @@
 package com.daangn.leejihun.gallery.presentation.ui.screen
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.CircularProgressIndicator
@@ -23,5 +24,11 @@ fun LoadingScreen(
 @Preview(showBackground = true)
 @Composable
 fun LoadingScreenPreview() {
+    LoadingScreen()
+}
+
+@Preview(uiMode = UI_MODE_NIGHT_YES)
+@Composable
+fun LoadingScreenPreview_DarkMode() {
     LoadingScreen()
 }

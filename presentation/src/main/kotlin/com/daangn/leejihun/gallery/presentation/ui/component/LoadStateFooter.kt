@@ -1,5 +1,6 @@
 package com.daangn.leejihun.gallery.presentation.ui.component
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -38,6 +39,15 @@ fun LoadStateFooter(
 fun LoadStateFooterPreview() {
     LoadStateFooter(
         loadState = LoadState.Loading,
-        onRetryClick = {}
+        onRetryClick = {},
+    )
+}
+
+@Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
+@Composable
+fun LoadStateFooterPreview_DarkMode() {
+    LoadStateFooter(
+        loadState = LoadState.Loading,
+        onRetryClick = {},
     )
 }

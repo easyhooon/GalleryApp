@@ -1,5 +1,6 @@
 package com.daangn.leejihun.gallery.presentation.ui.component
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -73,9 +74,19 @@ fun SearchTextField(
     )
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
 fun SearchTextFieldPreview() {
+    SearchTextField(
+        searchQuery = TextFieldValue(""),
+        updateSearchQuery = {},
+        onSearchQuery = {},
+    )
+}
+
+@Preview(uiMode = UI_MODE_NIGHT_YES)
+@Composable
+fun SearchTextFieldPreview_DarkMode() {
     SearchTextField(
         searchQuery = TextFieldValue(""),
         updateSearchQuery = {},
