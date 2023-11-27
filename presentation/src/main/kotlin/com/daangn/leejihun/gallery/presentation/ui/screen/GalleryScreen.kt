@@ -2,6 +2,7 @@
 
 package com.daangn.leejihun.gallery.presentation.ui.screen
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,10 +18,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.paging.ItemSnapshotList
 import androidx.paging.LoadState
+import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.daangn.leejihun.gallery.presentation.GalleryUiState
 import com.daangn.leejihun.gallery.presentation.model.Photo
 import com.daangn.leejihun.gallery.presentation.ui.component.FilteredPhotoLazyVerticalGrid
@@ -28,6 +32,7 @@ import com.daangn.leejihun.gallery.presentation.ui.component.PhotoLazyVerticalGr
 import com.daangn.leejihun.gallery.presentation.ui.component.SearchTextField
 import com.daangn.leejihun.gallery.presentation.ui.component.TopBarTitle
 import com.daangn.leejihun.gallery.presentation.ui.theme.Gray900
+import kotlinx.coroutines.flow.MutableStateFlow
 import my.nanihadesuka.compose.LazyGridVerticalScrollbar
 
 @Composable
@@ -122,32 +127,62 @@ fun GalleryScreen(
     }
 }
 
-// @Preview(showBackground = true)
-// @Composable
-// fun GalleryScreenPreview() {
-//     GalleryScreen(
-//         photoList = LazyPagingItems<Photo>,
-//         uiState = GalleryUiState(),
-//         searchQuery = TextFieldValue(""),
-//         updateSearchQuery = {},
-//         onPhotoClick = {},
-//         toggleSearchVisibility = {},
-//         getCurrentPhotoListSnapshot = {},
-//         onSearchQuery = {},
-//     )
-// }
+@Preview(showBackground = true)
+@Composable
+fun GalleryScreenPreview() {
+    val photoList = MutableStateFlow(
+        PagingData.from(
+            listOf(
+                Photo(
+                    id = "44",
+                    author = "Christopher Sardegna",
+                    width = 4272,
+                    height = 2848,
+                    url = "https://unsplash.com/photos/R1E6x8U83Ho",
+                    downloadUrl = "https://picsum.photos/id/44/4272/2848",
+                ),
+            ),
+        ),
+    ).collectAsLazyPagingItems()
 
-// @Preview(uiMode = UI_MODE_NIGHT_YES)
-// @Composable
-// fun GalleryScreenPreview_DarkMode() {
-//     GalleryScreen(
-//         photoList = LazyPagingItems<Photo>,
-//         uiState = GalleryUiState(),
-//         searchQuery = TextFieldValue(""),
-//         updateSearchQuery = {},
-//         onPhotoClick = {},
-//         toggleSearchVisibility = {},
-//         getCurrentPhotoListSnapshot = {},
-//         onSearchQuery = {},
-//     )
-// }
+    GalleryScreen(
+        photoList = photoList,
+        uiState = GalleryUiState(),
+        searchQuery = TextFieldValue(""),
+        updateSearchQuery = {},
+        onPhotoClick = {},
+        toggleSearchVisibility = {},
+        getCurrentPhotoListSnapshot = {},
+        onSearchQuery = {},
+    )
+}
+
+@Preview(uiMode = UI_MODE_NIGHT_YES)
+@Composable
+fun GalleryScreenPreview_DarkMode() {
+    val photoList = MutableStateFlow(
+        PagingData.from(
+            listOf(
+                Photo(
+                    id = "44",
+                    author = "Christopher Sardegna",
+                    width = 4272,
+                    height = 2848,
+                    url = "https://unsplash.com/photos/R1E6x8U83Ho",
+                    downloadUrl = "https://picsum.photos/id/44/4272/2848",
+                ),
+            ),
+        ),
+    ).collectAsLazyPagingItems()
+
+    GalleryScreen(
+        photoList = photoList,
+        uiState = GalleryUiState(),
+        searchQuery = TextFieldValue(""),
+        updateSearchQuery = {},
+        onPhotoClick = {},
+        toggleSearchVisibility = {},
+        getCurrentPhotoListSnapshot = {},
+        onSearchQuery = {},
+    )
+}
