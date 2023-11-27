@@ -53,7 +53,8 @@ fun DetailScreen(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    val scope = rememberCoroutineScope()
+    val coroutineScope = rememberCoroutineScope()
+    val zoomState = rememberZoomState()
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -80,7 +81,7 @@ fun DetailScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    scope.launch {
+                    coroutineScope.launch {
                         val byteArray = createByteArrayFromUrl(context, photo)
                         saveImageFile(
                             "IMG_${System.currentTimeMillis()}.png",
@@ -116,7 +117,7 @@ fun DetailScreen(
                     modifier = modifier
                         .fillMaxWidth()
                         .align(Alignment.Center)
-                        .zoomable(rememberZoomState()),
+                        .zoomable(zoomState),
                     contentScale = ContentScale.Fit,
                 )
 
