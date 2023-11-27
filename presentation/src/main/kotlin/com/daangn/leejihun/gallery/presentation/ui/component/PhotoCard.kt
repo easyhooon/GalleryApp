@@ -90,12 +90,12 @@ fun PhotoCard(
 fun PhotoCardPreview() {
     PhotoCard(
         photo = Photo(
-            id = "44",
+            id = "1",
             author = "Christopher Sardegna",
-            width = 4272,
-            height = 2848,
-            url = "https://unsplash.com/photos/R1E6x8U83Ho",
-            downloadUrl = "https://picsum.photos/id/44/4272/2848",
+            width = 160,
+            height = 160,
+            url = "",
+            downloadUrl = "",
         ),
         onPhotoClick = {},
     )
@@ -106,12 +106,12 @@ fun PhotoCardPreview() {
 fun PhotoCardPreview_DarkMode() {
     PhotoCard(
         photo = Photo(
-            id = "44",
+            id = "1",
             author = "Christopher Sardegna",
-            width = 4272,
-            height = 2848,
-            url = "https://unsplash.com/photos/R1E6x8U83Ho",
-            downloadUrl = "https://picsum.photos/id/44/4272/2848",
+            width = 160,
+            height = 160,
+            url = "",
+            downloadUrl = "",
         ),
         onPhotoClick = {},
     )

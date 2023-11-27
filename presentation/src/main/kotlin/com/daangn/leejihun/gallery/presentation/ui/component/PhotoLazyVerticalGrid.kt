@@ -79,20 +79,20 @@ fun PhotoLazyVerticalGrid(
 @Preview(showBackground = true)
 @Composable
 fun PhotoLazyVerticalGridPreview() {
-    val photoList = MutableStateFlow(
-        PagingData.from(
-            listOf(
-                Photo(
-                    id = "44",
-                    author = "Christopher Sardegna",
-                    width = 4272,
-                    height = 2848,
-                    url = "https://unsplash.com/photos/R1E6x8U83Ho",
-                    downloadUrl = "https://picsum.photos/id/44/4272/2848",
-                ),
+    val photos = mutableListOf<Photo>()
+    for (i in 1..10) {
+        photos.add(
+            Photo(
+                id = "$i",
+                author = "Christopher Sardegna",
+                width = 160,
+                height = 160,
+                url = "",
+                downloadUrl = "",
             ),
-        ),
-    ).collectAsLazyPagingItems()
+        )
+    }
+    val photoList = MutableStateFlow(PagingData.from(photos)).collectAsLazyPagingItems()
 
     PhotoLazyVerticalGrid(
         photoList = photoList,
@@ -104,20 +104,20 @@ fun PhotoLazyVerticalGridPreview() {
 @Preview(uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun PhotoLazyVerticalGridPreview_DarkMode() {
-    val photoList = MutableStateFlow(
-        PagingData.from(
-            listOf(
-                Photo(
-                    id = "44",
-                    author = "Christopher Sardegna",
-                    width = 4272,
-                    height = 2848,
-                    url = "https://unsplash.com/photos/R1E6x8U83Ho",
-                    downloadUrl = "https://picsum.photos/id/44/4272/2848",
-                ),
+    val photos = mutableListOf<Photo>()
+    for (i in 1..10) {
+        photos.add(
+            Photo(
+                id = "$i",
+                author = "Christopher Sardegna",
+                width = 160,
+                height = 160,
+                url = "",
+                downloadUrl = "",
             ),
-        ),
-    ).collectAsLazyPagingItems()
+        )
+    }
+    val photoList = MutableStateFlow(PagingData.from(photos)).collectAsLazyPagingItems()
 
     PhotoLazyVerticalGrid(
         photoList = photoList,
