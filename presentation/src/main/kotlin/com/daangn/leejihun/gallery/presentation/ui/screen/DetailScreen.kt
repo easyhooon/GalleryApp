@@ -25,11 +25,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import coil.ImageLoader
 import coil.compose.AsyncImage
@@ -91,7 +92,7 @@ fun DetailScreen(
                 },
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.ic_save),
+                    imageVector = ImageVector.vectorResource(R.drawable.ic_save),
                     contentDescription = stringResource(id = R.string.save_image),
                 )
             }

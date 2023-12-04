@@ -17,8 +17,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
@@ -57,7 +58,7 @@ fun TopBarTitle(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.ic_arrow_drop_down),
+                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_arrow_drop_down),
                         contentDescription = stringResource(R.string.dropdown),
                         colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.secondary),
                         modifier = Modifier.rotate(rotationState),
