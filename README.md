@@ -48,6 +48,7 @@
   - Core
   - Lifecycle & ViewModel Compose
   - Navigation
+  - Paging3
   - StartUp
   - Splash
 
