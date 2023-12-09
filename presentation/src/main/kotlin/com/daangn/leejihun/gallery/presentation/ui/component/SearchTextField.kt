@@ -24,6 +24,7 @@ import com.daangn.leejihun.gallery.presentation.R
 import com.daangn.leejihun.gallery.presentation.ui.theme.TextLMedium
 import com.daangn.leejihun.gallery.presentation.util.extension.clearFocusOnKeyboardDismiss
 
+// https://stackoverflow.com/questions/68389802/how-to-clear-textfield-focus-when-closing-the-keyboard-and-prevent-two-back-pres
 @Composable
 fun SearchTextField(
     searchQuery: TextFieldValue,

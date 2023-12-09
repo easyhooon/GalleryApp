@@ -10,6 +10,7 @@ import retrofit2.HttpException
 import timber.log.Timber
 import java.io.IOException
 
+// TODO getRefreshKey 진짜 호출 되는지 확인
 class GalleryPagingSource(
     private val service: GalleryService,
 ) : PagingSource<Int, PhotoResponse>() {
