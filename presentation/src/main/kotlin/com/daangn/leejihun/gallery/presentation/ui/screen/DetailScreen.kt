@@ -73,7 +73,7 @@ fun DetailScreen(
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBackIos,
-                            contentDescription = context.getString(R.string.arrow_forward_icon),
+                            contentDescription = stringResource(R.string.arrow_forward_icon),
                         )
                     }
                 },
