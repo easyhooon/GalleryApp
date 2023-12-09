@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.daangn.leejihun.gallery.presentation.R
 import com.daangn.leejihun.gallery.presentation.ui.theme.TextLMedium
+import com.daangn.leejihun.gallery.presentation.util.extension.clearFocusOnKeyboardDismiss
 
 @Composable
 fun SearchTextField(
@@ -35,7 +36,8 @@ fun SearchTextField(
     OutlinedTextField(
         modifier = modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(8.dp)
+            .clearFocusOnKeyboardDismiss(),
         value = searchQuery,
         singleLine = true,
         onValueChange = updateSearchQuery,
