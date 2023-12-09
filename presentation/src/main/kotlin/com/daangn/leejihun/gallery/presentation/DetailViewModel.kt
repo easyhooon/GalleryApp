@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 data class DetailUiState(
@@ -25,6 +26,7 @@ sealed interface DetailUiEvent {
     data class ShowToast(val message: UiText) : DetailUiEvent
 }
 
+// TODO 컴포저블 함수의 뷰모델의 생명주기 관련 학습
 @HiltViewModel
 class DetailViewModel @Inject constructor(
     private val saveImageFileUseCase: SaveImageFileUseCase,
@@ -55,5 +57,11 @@ class DetailViewModel @Inject constructor(
         viewModelScope.launch {
             _eventFlow.emit(DetailUiEvent.OnNavigateBack)
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        Timber.d("DetailViewModel ${this.hashCode()}")
+        Timber.d("DetailViewModel cleared")
     }
 }
