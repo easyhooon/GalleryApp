@@ -58,6 +58,8 @@ fun PhotoCard(
                     modifier = Modifier.fillMaxSize(),
                 )
             } else {
+                // 이미 갤러리 화면에서 해당 이미지를 로드 했었기 때문에, 해당 instance 가 app 내에 공유되어
+                // 인터넷 연결이 끊겨도 상세 화면에 진입 했을 때 이미지 로드가 가능하다.
                 AsyncImage(
                     model = ImageRequest.Builder(context)
                         .data(photo.downloadUrl)
