@@ -37,6 +37,10 @@ class DetailViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<DetailUiEvent>()
     val eventFlow: SharedFlow<DetailUiEvent> = _eventFlow.asSharedFlow()
 
+    init {
+        Timber.d("DetailViewModel ${this.hashCode()}")
+    }
+
     fun saveImageFile(fileName: String, byteArray: ByteArray) {
         viewModelScope.launch {
             _uiState.update {

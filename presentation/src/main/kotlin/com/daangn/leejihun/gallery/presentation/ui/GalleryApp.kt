@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -86,11 +87,15 @@ fun GalleryApp(
                     )
                 }
 
-                composable(Destination.Detail.route) { entry ->
-                    val args = entry.arguments ?: Bundle()
+                composable(Destination.Detail.route) { backStackEntry ->
+                    val parentEntry = remember(backStackEntry) {
+                        navController.getBackStackEntry("gallery")
+                    }
+
+                    val args = backStackEntry.arguments ?: Bundle()
                     val photo = BundleCompat.getParcelable(args, "photo", Photo::class.java)
 
-                    val viewModel = hiltViewModel<DetailViewModel>()
+                    val viewModel = hiltViewModel<DetailViewModel>(parentEntry)
                     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
                     val context = LocalContext.current
 
