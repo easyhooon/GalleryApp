@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.daangn.leejihun.gallery.presentation"
+    namespace = "com.kenshi.gallery.presentation"
 
     buildFeatures {
         buildConfig = true

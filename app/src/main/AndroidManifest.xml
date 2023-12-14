@@ -9,7 +9,7 @@
         android:maxSdkVersion="28" />
 
     <application
-        android:name=".GalleryApplication"
+        android:name="com.kenshi.gallery.GalleryApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -27,7 +27,7 @@
             tools:node="merge">
 
             <meta-data
-                android:name="com.daangn.leejihun.gallery.initializer.TimberInitializer"
+                android:name="com.kenshi.gallery.initializer.TimberInitializer"
                 android:value="androidx.startup" />
 
         </provider>
