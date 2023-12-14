@@ -1,8 +1,8 @@
 @file:Suppress("UnstableApiUsage", "INLINE_FROM_HIGHER_PLATFORM")
 
 plugins {
-    daangn("android-application")
-    daangn("android-hilt")
+    gallery("android-application")
+    gallery("android-hilt")
 }
 
 android {

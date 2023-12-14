@@ -53,6 +53,6 @@ fun NamedDomainObjectContainer<PluginDeclaration>.pluginRegister(data: Pair<Stri
     val (className, pluginName) = data
     register(pluginName) {
         implementationClass = className
-        id = "daangn.plugin.$pluginName"
+        id = "gallery.plugin.$pluginName"
     }
 }

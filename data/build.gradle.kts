@@ -1,8 +1,8 @@
 @file:Suppress("UnstableApiUsage", "INLINE_FROM_HIGHER_PLATFORM", "DSL_SCOPE_VIOLATION")
 
 plugins {
-    daangn("android-library")
-    daangn("android-hilt")
+    gallery("android-library")
+    gallery("android-hilt")
     alias(libs.plugins.kotlinx.serialization)
 }
 

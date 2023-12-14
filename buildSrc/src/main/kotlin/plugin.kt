@@ -3,8 +3,8 @@
 import org.gradle.plugin.use.PluginDependenciesSpec
 import org.gradle.plugin.use.PluginDependencySpec
 
-inline fun PluginDependenciesSpec.daangn(pluginId: String): PluginDependencySpec =
-    id("daangn.plugin.$pluginId")
+inline fun PluginDependenciesSpec.gallery(pluginId: String): PluginDependencySpec =
+    id("gallery.plugin.$pluginId")
 
 inline fun PluginDependenciesSpec.android(pluginId: String): PluginDependencySpec =
     id("com.android.$pluginId")

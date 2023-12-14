@@ -1,9 +1,9 @@
 @file:Suppress("UnstableApiUsage", "INLINE_FROM_HIGHER_PLATFORM")
 
 plugins {
-    daangn("android-library")
-    daangn("android-compose")
-    daangn("android-hilt")
+    gallery("android-library")
+    gallery("android-compose")
+    gallery("android-hilt")
     id("kotlin-parcelize")
 }
 

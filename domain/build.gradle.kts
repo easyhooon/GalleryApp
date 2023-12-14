@@ -1,7 +1,7 @@
 @file:Suppress("UnstableApiUsage", "INLINE_FROM_HIGHER_PLATFORM")
 
 plugins {
-    daangn("jvm-kotlin")
+    gallery("jvm-kotlin")
 }
 
 dependencies {
