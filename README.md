@@ -1,4 +1,4 @@
-# daangn-assignment
+# GalleryApp
 
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.9.20-blue.svg)](https://kotlinlang.org)
 [![Gradle](https://img.shields.io/badge/gradle-8.0-green.svg)](https://gradle.org/)
@@ -8,8 +8,6 @@
 <br/>
 
 ![graphic image](https://github.com/easyhooon/daangn-assignment/assets/51016231/f55bc26d-3208-42db-bd4c-0df3e863bccc)
-
-## GalleryApp
 
 |Light Mode 1|Light Mode 2|
 |:-----:|:-----:|
@@ -111,3 +109,7 @@ Based on [Google App Architecture](https://developer.android.com/topic/architect
     ├── compose-metrics
     └── compose-reports
 ```
+
+# ToDo
+- [ ] LazyColumnScrollbar Custom (갤럭시 핸드폰의 갤러리의 스크롤바 처럼 위아래 화살표 구현)
+- [ ] BuildType, Flavor 적용 
