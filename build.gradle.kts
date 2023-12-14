@@ -59,12 +59,8 @@ allprojects {
                 freeCompilerArgs = freeCompilerArgs + listOf(
                     "-opt-in=kotlin.OptIn",
                     "-opt-in=kotlin.RequiresOptIn",
-                )
-                freeCompilerArgs = freeCompilerArgs + listOf(
                     "-P",
                     "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=$projectPath/report/compose-metrics",
-                )
-                freeCompilerArgs = freeCompilerArgs + listOf(
                     "-P",
                     "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=$projectPath/report/compose-reports",
                 )
