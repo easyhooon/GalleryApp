@@ -43,13 +43,6 @@ internal fun Project.configureAndroid(extension: CommonExtension<*, *, *, *, *>)
     dependencies.add("detektPlugins", libs.findLibrary("detekt-plugin-formatting").get())
 
     buildTypes {
-      getByName("debug") {
-        proguardFiles(
-          getDefaultProguardFile("proguard-android.txt"),
-          "proguard-debug.pro",
-        )
-      }
-
       getByName("release") {
         isMinifyEnabled = true
         proguardFiles(
