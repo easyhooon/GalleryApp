@@ -32,7 +32,7 @@ import java.util.Locale
 import javax.inject.Inject
 
 data class GalleryUiState(
-    val isSearchVisible: Boolean = false,
+    val isSearchTextFieldVisible: Boolean = false,
     val currentPhotoListSnapshot: ImmutableList<Photo> = persistentListOf(),
     val filteredPhotoList: ImmutableList<Photo> = persistentListOf(),
     val isLoading: Boolean = false,
@@ -75,7 +75,7 @@ class GalleryViewModel @Inject constructor(
 
     fun toggleSearchVisibility() {
         _uiState.update {
-            it.copy(isSearchVisible = !_uiState.value.isSearchVisible)
+            it.copy(isSearchTextFieldVisible = !_uiState.value.isSearchTextFieldVisible)
         }
     }
 

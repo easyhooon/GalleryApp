@@ -24,7 +24,6 @@ import com.kenshi.gallery.presentation.R
 import com.kenshi.gallery.presentation.ui.theme.TextLMedium
 import com.kenshi.gallery.presentation.util.extension.clearFocusOnKeyboardDismiss
 
-// https://stackoverflow.com/questions/68389802/how-to-clear-textfield-focus-when-closing-the-keyboard-and-prevent-two-back-pres
 @Composable
 fun SearchTextField(
     searchQuery: TextFieldValue,
@@ -34,7 +33,7 @@ fun SearchTextField(
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
 
-    // TODO 포커스가 해제되지 않는 문제 아직 해결되지 않았음
+    // 실기기에선 포커스가 해제되지 않는 문제가 해결되었되지만 에뮬레이터에선 해결되지 않음
     OutlinedTextField(
         modifier = modifier
             .fillMaxWidth()

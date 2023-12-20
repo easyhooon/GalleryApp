@@ -16,7 +16,6 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -48,24 +47,24 @@ fun GalleryScreen(
     modifier: Modifier = Modifier,
 ) {
     val lazyGridState = rememberLazyGridState()
-    val keyboardController = LocalSoftwareKeyboardController.current
+//    val keyboardController = LocalSoftwareKeyboardController.current
 
     val isLoading = photoList.loadState.refresh is LoadState.Loading
     val isError = photoList.loadState.refresh is LoadState.Error
 
-    LaunchedEffect(key1 = uiState.isSearchVisible) {
-        if (uiState.isSearchVisible) {
+    LaunchedEffect(key1 = uiState.isSearchTextFieldVisible) {
+        if (uiState.isSearchTextFieldVisible) {
             getCurrentPhotoListSnapshot(photoList.itemSnapshotList)
         }
     }
 
-    LaunchedEffect(key1 = searchQuery.text) {
-        if (uiState.isSearchVisible && searchQuery.text == "") {
-            keyboardController?.hide()
-            onSearchQuery(TextFieldValue(""))
-            lazyGridState.animateScrollToItem(0)
-        }
-    }
+//    LaunchedEffect(key1 = searchQuery.text) {
+//        if (uiState.isSearchTextFieldVisible && searchQuery.text == "") {
+//            keyboardController?.hide()
+//            onSearchQuery(TextFieldValue(""))
+//            lazyGridState.animateScrollToItem(0)
+//        }
+//    }
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -75,7 +74,7 @@ fun GalleryScreen(
                     TopBarTitle(
                         loadState = photoList.loadState.refresh,
                         toggleSearchVisibility = toggleSearchVisibility,
-                        isSearchVisible = uiState.isSearchVisible,
+                        isSearchVisible = uiState.isSearchTextFieldVisible,
                     )
                 },
             )
@@ -85,14 +84,14 @@ fun GalleryScreen(
             modifier = Modifier.padding(innerPadding),
         ) {
             Column {
-                AnimatedVisibility(visible = uiState.isSearchVisible) {
+                AnimatedVisibility(visible = uiState.isSearchTextFieldVisible) {
                     SearchTextField(
                         searchQuery = searchQuery,
                         updateSearchQuery = updateSearchQuery,
                         onSearchQuery = onSearchQuery,
                     )
                 }
-                if (uiState.isSearchVisible) {
+                if (uiState.isSearchTextFieldVisible) {
                     LazyGridVerticalScrollbar(
                         state = lazyGridState,
                         thumbColor = Gray900,
