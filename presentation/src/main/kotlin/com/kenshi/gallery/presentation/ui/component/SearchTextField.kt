@@ -34,6 +34,7 @@ fun SearchTextField(
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
 
+    // TODO 포커스가 해제되지 않는 문제 아직 해결되지 않았음
     OutlinedTextField(
         modifier = modifier
             .fillMaxWidth()
