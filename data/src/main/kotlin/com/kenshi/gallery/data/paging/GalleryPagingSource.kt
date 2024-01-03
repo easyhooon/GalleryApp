@@ -10,11 +10,11 @@ import retrofit2.HttpException
 import timber.log.Timber
 import java.io.IOException
 
-// TODO getRefreshKey 진짜 호출 되는지 확인
 class GalleryPagingSource(
     private val service: GalleryService,
 ) : PagingSource<Int, PhotoResponse>() {
 
+    // PagingDataAdapter.refresh() or LazyPagingItems.refresh() 와 같은 함수를 통해 수동으로 리프레시를 할 때 호출됨
     override fun getRefreshKey(state: PagingState<Int, PhotoResponse>): Int? {
         // Try to find the page key of the closest page to anchorPosition, from
         // either the prevKey or the nextKey, but you need to handle nullability
@@ -23,6 +23,7 @@ class GalleryPagingSource(
         //  * nextKey == null -> anchorPage is the last page.
         //  * both prevKey and nextKey null -> anchorPage is the initial page, so
         //    just return null.
+        Timber.d("getRefreshKey 호출")
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)

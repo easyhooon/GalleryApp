@@ -48,6 +48,7 @@ fun GalleryScreen(
 ) {
     val lazyGridState = rememberLazyGridState()
 //    val keyboardController = LocalSoftwareKeyboardController.current
+//    val focusManager = LocalFocusManager.current
 
     val isLoading = photoList.loadState.refresh is LoadState.Loading
     val isError = photoList.loadState.refresh is LoadState.Error
@@ -61,8 +62,10 @@ fun GalleryScreen(
 //    LaunchedEffect(key1 = searchQuery.text) {
 //        if (uiState.isSearchTextFieldVisible && searchQuery.text == "") {
 //            keyboardController?.hide()
+//            focusManager.clearFocus()
 //            onSearchQuery(TextFieldValue(""))
 //            lazyGridState.animateScrollToItem(0)
+//            photoList.refresh()
 //        }
 //    }
 
