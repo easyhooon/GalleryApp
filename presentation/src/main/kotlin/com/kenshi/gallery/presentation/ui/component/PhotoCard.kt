@@ -63,6 +63,7 @@ fun PhotoCard(
                 AsyncImage(
                     model = ImageRequest.Builder(context)
                         .data(photo.downloadUrl)
+                        .crossfade(true)
                         .build(),
                     contentDescription = stringResource(id = R.string.photo_image),
                     contentScale = ContentScale.Crop,
