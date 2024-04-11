@@ -15,6 +15,7 @@ android {
 }
 
 dependencies {
+    coreLibraryDesugaring(libs.desugar.jdk)
     implementations(
         projects.domain,
         libs.kotlinx.serialization.json,

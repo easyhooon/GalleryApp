@@ -1,44 +1,44 @@
 [versions]
 
-android-gradle-plugin = "8.1.4"
+android-gradle-plugin = "8.2.2"
 gradle-dependency-handler-extensions = "1.1.0"
 
 google-secrets = "2.0.1"
 
-kotlin-core = "1.9.20"
-kotlin-detekt = "1.23.3"
+kotlin-core = "1.9.23"
+kotlin-detekt = "1.23.6"
 kotlin-ktlint-gradle = "11.6.1"
-kotlin-ktlint-source = "0.49.1"
+kotlin-ktlint-source = "0.50.0"
 
 kotlinx-serialization = "1.6.2"
 kotlinx-serialization-converter = "1.0.0"
 kotlinx-collections-immutable = "0.3.6"
 
-android-material = "1.10.0"
-android-hilt = "2.49"
+android-material = "1.11.0"
+android-hilt = "2.51.1"
 
-androidx-activity = "1.8.1"
-androidx-activity-compose = "1.8.1"
+androidx-activity = "1.8.2"
+androidx-activity-compose = "1.8.2"
 androidx-appcompat = "1.6.1"
-androidx-compose-compiler = "1.5.4"
-androidx-compose-bom = "2023.10.01"
-androidx-compose-material3 = "1.2.0-alpha12"
+androidx-compose-compiler = "1.5.11"
+androidx-compose-bom = "2024.04.00"
+androidx-compose-material3 = "1.2.1"
 androidx-compose-runtime-tracing = "1.0.0-beta01"
-androidx-compose-navigation = "2.7.5"
+androidx-compose-navigation = "2.7.7"
 androidx-core = "1.12.0"
-androidx-hilt-navigation-compose = "1.1.0"
-androidx-lifecycle-runtime = "2.6.2"
+androidx-hilt-navigation-compose = "1.2.0"
+androidx-lifecycle-runtime = "2.7.0"
 androidx-paging = "3.2.1"
-androidx-paging-compose = "3.3.0-alpha02"
+androidx-paging-compose = "3.3.0-beta01"
 androidx-startup = "1.1.1"
 androidx-splash = "1.0.1"
 
-coil = "2.5.0"
+coil = "2.6.0"
 desugar-jdk = "2.0.4"
-ksp = "1.9.20-1.0.14"
+ksp = "1.9.23-1.0.20"
 javax-inject = "1"
-retrofit = "2.9.0"
-okhttp = "5.0.0-alpha.11"
+retrofit = "2.11.0"
+okhttp = "5.0.0-alpha.12"
 timber = "5.0.1"
 zoomable = "1.5.2"
 lazy-column-scrollbar = "1.9.0"
@@ -54,6 +54,7 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 kotlinx-collections-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "kotlinx-collections-immutable" }
 
 android-material = { group = "com.google.android.material", name = "material", version.ref = "android-material" }
+
 android-hilt-compile = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "android-hilt" }
 android-hilt-runtime = { group = "com.google.dagger", name = "hilt-android", version.ref = "android-hilt" }
 
